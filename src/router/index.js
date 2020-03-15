@@ -9,6 +9,7 @@ import Peak from '../pages/peak'
 import Serious from '../pages/seriousAnalyze'
 import Resumption from '../pages/resumption'
 import Public from '../pages/publicAnalyze'
+import HealthCode from '../pages/healthCode'
 
 Vue.use(Router)
 
@@ -58,6 +59,11 @@ export default new Router({
       path: '/public',
       name: 'public',
       component: Public
+    },
+    {
+      path: '/healthCode',
+      name: 'healthCode',
+      component: HealthCode
     }
   ]
 })
