@@ -3,12 +3,14 @@
     <div style="background: #FFFFFF; padding: 0 24px 0 24px; height: 100%;">
       <div class="title">
         <h1>湖北省疫情分析</h1>
-        <el-button type="primary">大屏展示</el-button>
+        <el-button type="primary" @click="toggleFullScreen($event)">大屏展示</el-button>
       </div>
-      <div class="content">
+      <div class="content" id="canvasPaintArea">
+        <Header />
         <div class="flex-col">
           <div class="flex-row">
             <div class="flex-cell flex-cell-2 flex-left">
+
             </div>
             <div class="flex-cell flex-cell-4">
             </div>
@@ -22,11 +24,67 @@
 </template>
 
 <script>
-  export default {
+import Header from './components/header'
+export default {
   data() {
     return {
-
+      isFullscreen:true
     }
+  },
+  components: {
+    Header,
+  },
+  mounted() {
+   let _that=this;
+   window.onresize = function() {
+        if (!_that.checkFull()) {
+            //要执行的动作
+           _that.isFullscreen=true;
+        }
+    }
+  },
+  methods: {
+    checkFull() {
+      var isFull = document.fullscreenEnabled || window.fullScreen || document.webkitIsFullScreen || document.msFullscreenEnabled;
+      if (isFull === undefined) {isFull = false;}
+      return isFull
+    } ,
+    FullScreen(el){
+      if(this.isFullscreen){//退出全屏
+        if(document.exitFullscreen){
+          document.exitFullscreen()
+        }else if( document.mozCancelFullScreen){
+          document.mozCancelFullScreen()
+        }else if(document.webkitExitFullscreen){
+          //改变平面图在google浏览器上面的样式问题
+          // $("#canvasPaintArea").css("position","static").css("width","100%");
+          // $(".buildingsFloor").css("width","70%");
+          // $(".floor-plan").css("width","78%");
+          document.webkitExitFullscreen()
+        }else if(!document.msRequestFullscreen){
+          document.msExitFullscreen()
+        }
+      }else{    //进入全屏
+        if(el.requestFullscreen){
+          el.requestFullscreen()
+        }else if(el.mozRequestFullScreen){
+          el.mozRequestFullScreen()
+        }else if(el.webkitRequestFullscreen){
+          //改变平面图在google浏览器上面的样式问题
+          // $("#canvasPaintArea").css("position","absolute").css("width","94%");
+          // $(".buildingsFloor").css("width","98%");
+          // $(".floor-plan").css("width","90%");
+          el.webkitRequestFullscreen();
+        }else if(el.msRequestFullscreen){
+          this.isFullscreen=true;
+          el.msRequestFullscreen()
+        }
+      }
+    },
+    toggleFullScreen(e){
+        this.isFullscreen=!this.isFullscreen;
+        this.FullScreen(document.getElementById("canvasPaintArea"));
+    },
   }
 }
 </script>
