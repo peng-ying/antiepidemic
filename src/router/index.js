@@ -58,6 +58,11 @@ export default new Router({
       path: '/public',
       name: 'public',
       component: Public
+    },
+    {
+      path: '/largescreen',
+      name: 'largescreen',
+      component: () => import('../pages/largescreen/index.vue'),
     }
   ]
 })
