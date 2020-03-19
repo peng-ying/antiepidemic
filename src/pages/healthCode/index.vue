@@ -56,6 +56,11 @@
 
   .content {
     width: 100%;
+    max-height: 1080px;
+    background-image: url(../../assets/imgs/bg.png);
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    overflow: hidden;
     .flex-col {
       height: 100%;
       display: flex;
