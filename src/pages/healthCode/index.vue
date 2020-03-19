@@ -128,11 +128,47 @@ export default {
 
   .content {
     width: 100%;
-    max-height: 1080px;
+    height: 900px;
+    // max-height: 1080px;
     background-image: url(../../assets/imgs/bg.png);
     background-repeat: no-repeat;
     background-position: center bottom;
     overflow: hidden;
+    .top {
+      width: 100%;
+      height: 6.5%;
+      .decoration {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        text-align: center;
+        // background-image: url(../../assets/imgs/装饰线.png);
+        // background-repeat: no-repeat;
+        // background-position: center center;
+        .decoration-line {
+          width: 100%;
+          margin-top: 2%;
+        }
+        .top-title {
+          width: 35%;
+          height: 100%;
+          background-image: url(../../assets/imgs/title-bg.png);
+          background-repeat: no-repeat;
+          background-position: center 0;
+          background-size: 140%;
+          position: absolute;
+          top: 0;
+          left: 32.5%;
+          color: #FFFFFF;
+          p {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+
+    }
+
     .flex-col {
       height: 100%;
       display: flex;
