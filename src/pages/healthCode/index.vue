@@ -6,14 +6,16 @@
         <el-button type="primary">大屏展示</el-button>
       </div>
       <div class="content">
-        <!-- <el-row :gutter="18">
-          <el-col :span="7">
-          </el-col>
-          <el-col :span="10">
-          </el-col>
-          <el-col :span="7">
-          </el-col>
-        </el-row> -->
+        <div class="flex-col">
+          <div class="flex-row">
+            <div class="flex-cell flex-cell-2 flex-left">
+            </div>
+            <div class="flex-cell flex-cell-4">
+            </div>
+            <div class="flex-cell flex-cell-2 flex-right">
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -51,9 +53,31 @@
       line-height: 0;
     }
   }
-  
+
   .content {
     width: 100%;
+    .flex-col {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      .flex-row {
+        flex: 1;
+        display: flex;
+        height: 100%;
+        .flex-cell-2 {
+          flex: 0.26;
+        }
+        .flex-cell-4 {
+          flex: 0.48;
+        }
+        .flex-left {
+          margin-left: 20px;
+        }
+        .flex-right {
+          margin-right: 20px;
+        }
+      }
+    }
   }
 }
 </style>
