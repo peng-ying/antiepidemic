@@ -10,11 +10,22 @@
         <div class="flex-col">
           <div class="flex-row">
             <div class="flex-cell flex-cell-2 flex-left">
-
+              <div class="flex-col">
+                <div class="flex-cell">
+                  <SubTitle :subTitle="leftOneTitle"/>
+                </div>
+                <div class="flex-cell"></div>
+                <div class="flex-cell"></div>
+              </div>
             </div>
             <div class="flex-cell flex-cell-4">
             </div>
             <div class="flex-cell flex-cell-2 flex-right">
+              <div class="flex-col">
+                <div class="flex-cell"></div>
+                <div class="flex-cell"></div>
+                <div class="flex-cell"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -24,15 +35,18 @@
 </template>
 
 <script>
-import Header from './components/header'
+import Header from './components/header';
+import SubTitle from './components/subTitle';
 export default {
   data() {
     return {
-      isFullscreen:true
+      isFullscreen:true,
+      leftOneTitle:'湖北省健康码申请与发放情况',
     }
   },
   components: {
     Header,
+    SubTitle,
   },
   mounted() {
    let _that=this;

@@ -20,7 +20,7 @@ export default {
   background-image: url(../../../assets/imgs/装饰线.png);
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: 100% 100%;
+  // background-size: 100% 100%;
   display: flex;
   justify-content: space-around;
   flex: 1;
