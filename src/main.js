@@ -10,7 +10,7 @@ import echarts from 'echarts'
 import axios from 'axios'
 
 Vue.use(ElementUI);
-Vue.use(axios)
+// Vue.use(axios)
 Vue.prototype.$echarts = echarts
 Vue.prototype.$axios=axios;
 

@@ -5,22 +5,285 @@
 
 <script>
 // import hubei from "../../assets/js/hubei.js";
+import geoJson from "../../assets/json/hubei.json";
 export default {
   data() {
     return {
-
-    }
+      mapname: 'hubei',
+    };
   },
-  props: ['echartsData'],
+  props: ["echartsData"],
   created() {
     this.$nextTick(() => {
       this.initEcharts();
-    })
+    });
   },
   methods: {
     initEcharts() {
-      
+      // this.$axios.get("../static/hunan.json").then(res => {
+      //   console.log(res)
+      // })
+      debugger
+      console.log(this.mapname, geoJson)
+      // 基于准备好的dom，初始化echarts实例
+      let myChart = this.$echarts.init(document.getElementById("map"));
+      myChart.hideLoading();
+
+      this.$echarts.registerMap(this.mapname, geoJson);
+      myChart.setOption({
+          geo: {
+            map: 'hubei'
+          },
+          //  backgroundColor: "rgb(230, 238, 243)",
+          color: ["white"],
+          legend: {
+            orient: "vertical",
+            left: "left",
+            textStyle: {
+              fontSize: 20,
+              color: "black" // 图例文字颜色
+            }
+            //data: ['地市']
+            // 图例位置
+          },
+          visualMap: {
+            min: 0,
+            max: 10000,
+            left: "right",
+            top: "top",
+            text: ["申请人数"],
+            // 文本，默认为数值文本
+            //calculable: true,
+            //color: ['blue', 'blue']
+            //图例颜色
+            pieces: [
+              {
+                min: 10000,
+                max: 90000,
+                label: ">50000",
+                color: "#043154"
+              },
+              {
+                min: 5000,
+                max: 9999,
+                label: "5000-9999",
+                color: "#044374"
+              },
+              {
+                min: 500,
+                max: 4999,
+                label: "1000-4999",
+                color: "#03579D"
+              },
+              {
+                min: 0,
+                max: 500,
+                label: "0-500",
+                color: "#0269BF"
+              }
+            ],
+            orient: "vertical",
+            itemWidth: 25,
+            itemHeight: 15,
+            showLabel: true,
+            seriesIndex: [0],
+            textStyle: {
+              color: "#80C5FF"
+            }
+          },
+          tooltip: {
+            trigger: "item",
+            formatter: function(params, ticket, callback) {
+              console.log(params);
+              var tipHtml = "";
+              var dataList = params.data;
+              var str = "";
+              for (var i in dataList) {
+                tipHtml = `
+        <div style="padding:10px 10px 10px 20px;height:auto;fontSize: 15px;width:237px;border-radius:5px;background: #072D4E">
+            <span style="fontSize: 15px;"><span style="color: #80C5FF">城市名称：</span>${dataList.name}</span><br />
+            <span style="fontSize: 15px;"><span style="color: #80C5FF">申请人数 :</span> ${dataList.value}</span><br />
+            <span style="fontSize: 15px;"><span style="color: #FE7978">红码</span><span style="color: #80C5FF">人数 :</span> ${dataList.red}（20%）</span><br />
+            <span style="fontSize: 15px;"><span style="color: #EFF159">黄码</span><span style="color: #80C5FF">人数 :</span> ${dataList.yellow}（30%）</span><br />
+            <span style="fontSize: 15px;"><span style="color: #41EF52">绿码</span><span style="color: #80C5FF">人数 : </span>${dataList.green}（10%）</span><br />
+            <span style="fontSize: 15px;"><span style="color: #AFAFAF">灰码</span><span style="color: #80C5FF">人数 : </span>${dataList.grey}（40%）</span><br />
+        </div>
+        `;
+              }
+              return tipHtml;
+            }
+          },
+          series: [
+            {
+              //  name: '地市',
+              type: "map",
+              mapType: this.mapname,
+              showLegendSymbol: false,
+              label: {
+                normal: {
+                  show: true,
+                  color: "#ffffff"
+                },
+                emphasis: {
+                  textStyle: {
+                    color: "#fff"
+                  }
+                }
+              },
+              emphasis: {
+                itemStyle: {
+                  areaColor: "#4FAE4F"
+                }
+              },
+              itemStyle: {
+                borderColor: "#0E7EEA",
+                borderWidth: "2"
+              },
+
+              data: [
+                {
+                  name: "鄂州市",
+                  value: 1391,
+                  grey: 50,
+                  red: 60,
+                  yellow: 70,
+                  green: 80
+                },
+                {
+                  name: "恩施土家族苗族自治州",
+                  value: 252,
+                  grey: 50,
+                  red: 60,
+                  yellow: 70,
+                  green: 80
+                },
+                {
+                  name: "黄冈市",
+                  value: 2905,
+                  grey: 50,
+                  red: 60,
+                  yellow: 70,
+                  green: 80
+                },
+                {
+                  name: "黄石市",
+                  value: 1014,
+                  grey: 50,
+                  red: 60,
+                  yellow: 70,
+                  green: 80
+                },
+                {
+                  name: "荆门市",
+                  value: 925,
+                  grey: 50,
+                  red: 60,
+                  yellow: 70,
+                  green: 80
+                },
+                {
+                  name: "荆州市",
+                  value: 1579,
+                  grey: 50,
+                  red: 60,
+                  yellow: 70,
+                  green: 80
+                },
+                {
+                  name: "潜江市",
+                  value: 198,
+                  grey: 50,
+                  red: 60,
+                  yellow: 70,
+                  green: 80
+                },
+                {
+                  name: "神农架林区",
+                  value: 11,
+                  grey: 50,
+                  red: 60,
+                  yellow: 70,
+                  green: 80
+                },
+                {
+                  name: "十堰市",
+                  value: 672,
+                  grey: 50,
+                  red: 60,
+                  yellow: 70,
+                  green: 80
+                },
+                {
+                  name: "随州市",
+                  value: 1307,
+                  grey: 50,
+                  red: 60,
+                  yellow: 70,
+                  green: 80
+                },
+                {
+                  name: "天门市",
+                  value: 496,
+                  grey: 50,
+                  red: 60,
+                  yellow: 70,
+                  green: 80
+                },
+                {
+                  name: "武汉市",
+                  value: 49122,
+                  grey: 50,
+                  red: 60,
+                  yellow: 70,
+                  green: 80
+                },
+                {
+                  name: "仙桃市",
+                  value: 575,
+                  grey: 50,
+                  red: 60,
+                  yellow: 70,
+                  green: 80
+                },
+                {
+                  name: "咸宁市",
+                  value: 836,
+                  grey: 50,
+                  red: 60,
+                  yellow: 70,
+                  green: 80
+                },
+                {
+                  name: "襄阳市",
+                  value: 1175,
+                  grey: 50,
+                  red: 60,
+                  yellow: 70,
+                  green: 80
+                },
+                {
+                  name: "孝感市",
+                  value: 3518,
+                  grey: 50,
+                  red: 60,
+                  yellow: 70,
+                  green: 80
+                },
+                {
+                  name: "宜昌市",
+                  value: 931,
+                  grey: 50,
+                  red: 60,
+                  yellow: 70,
+                  green: 80
+                }
+              ]
+              //animationDurationUpdate: 1000,
+              //animationEasingUpdate: 'quinticInOut'
+            }
+          ]
+        });
     }
   }
-}
+};
 </script>
