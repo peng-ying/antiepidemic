@@ -1,5 +1,5 @@
 <template>
-  <div id="aplly" style="width: 100%;height: 100%;"></div>
+  <div id="apply" style="width: 100%;height: 100%;"></div>
 </template>
 
 <script>
@@ -9,9 +9,19 @@ export default {
 
     }
   },
+<<<<<<< HEAD
   props: [echartsData],
+=======
+  created() {
+    this.$nextTick(() => {
+      this.initEcharts();
+    })
+  },
+  // props: [data],
+>>>>>>> cc4930f7660f1445632aa89f7508cc52b6d75bd7
   methods: {
     initEcharts() {
+      debugger
       // 基于准备好的dom，初始化echarts实例
       let myChart = this.$echarts.init(document.getElementById('apply'));
 
@@ -134,5 +144,5 @@ export default {
 </script>
 
 <style lang="less">
-  
+
 </style>

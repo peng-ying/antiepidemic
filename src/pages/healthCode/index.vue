@@ -10,14 +10,78 @@
         <div class="flex-col">
           <div class="flex-row">
             <div class="flex-cell flex-cell-2 flex-left">
-              <div class="aplly">
-                <p class="card-title">湖北省健康码申请与发放情况</p>
-                <img src="../../assets/imgs/decoration-bg.png" alt="" class="card-decoration">
+              <div class="flex-col flex-left">
+                <div class="flex-cell flex-left-2">
+                  <SubTitle :subTitle="leftOneTitle"/>
+                  <div class="leftOnecontent">
+                    <ApplyEcharts />
+                  </div>
+                </div>
+                <div class="flex-cell flex-left-3">
+                  <SubTitle :subTitle="leftTwoTitle"/>
+                  <div class="leftTwocontent">
+
+                  </div>
+                </div>
+                <div class="flex-cell flex-left-4">
+                  <SubTitle :subTitle="leftThreeTitle"/>
+                  <div class="leftThreecontent">
+
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="flex-cell flex-cell-4">
+            <div class="flex-cell flex-cell-4 flex-center">
+              <div class="flex-col">
+                <div class="flex-cell flex-center-1"></div>
+                <div class="flex-cell flex-center-5"></div>
+                <div class="flex-cell flex-center-2">
+                  <div class="flex-col">
+                    <div class="flex-row">
+                      <div class="flex-cell flex-center-5-5">
+                        <SubTitle :subTitle="centerOnecontent"/>
+                        <div class="centerOnecontent">
+
+                        </div>
+                      </div>
+                      <div class="flex-cell flex-center-3-3">
+                        <SubTitle :subTitle="centerTwocontent"/>
+                        <div class="centerTwocontent">
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="flex-cell flex-cell-2 flex-right">
+              <div class="flex-col">
+                <div class="flex-cell flex-right-3">
+                  <SubTitle :subTitle="rightOneTitle"/>
+                  <div class="rightOnecontent">
+
+                  </div>
+                </div>
+                <div class="flex-cell flex-right-1">
+                  <SubTitle :subTitle="rightTwoTitle"/>
+                  <div class="rightTwocontent">
+
+                  </div>
+                </div>
+                <div class="flex-cell flex-right-2">
+                  <SubTitle :subTitle="rightThreeTitle"/>
+                  <div class="rightThreecontent">
+
+                  </div>
+                </div>
+                <div class="flex-cell flex-right-2-2">
+                  <SubTitle :subTitle="rightFourTitle"/>
+                  <div class="rightFourcontent">
+
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -27,15 +91,28 @@
 </template>
 
 <script>
-import Header from './components/header'
+import Header from './components/header';
+import SubTitle from './components/subTitle';
+import ApplyEcharts from '@/components/echarts/applyEcharts';
 export default {
   data() {
     return {
-      isFullscreen:true
+      isFullscreen:true,
+      leftOneTitle: '湖北省健康码申请与发放情况',
+      leftTwoTitle: '人群性别及年龄分布',
+      leftThreeTitle: '健康码发布情况',
+      rightOneTitle: '湖北省健康码验码情况',
+      rightTwoTitle: '验码出行方式',
+      rightThreeTitle: '验码城市排行',
+      rightFourTitle: '验码卡口排行',
+      centerOnecontent: '打卡情况',
+      centerTwocontent: '打卡人群健康情况',
     }
   },
   components: {
     Header,
+    SubTitle,
+    ApplyEcharts,
   },
   mounted() {
    let _that=this;
@@ -93,6 +170,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@import url('../../assets/css/common.less');
 .container{
   background-color: #EEF1F7;
   padding: 24px 24px 0 24px;
@@ -155,7 +233,7 @@ export default {
           }
         }
       }
-      
+
     }
 
     .flex-col {
@@ -178,6 +256,94 @@ export default {
         .flex-right {
           margin-right: 20px;
         }
+      }
+      .flex-cell {
+        .leftOnecontent {
+          background:linear-gradient(0deg,rgba(0,138,255,.1) 0%,rgba(0,138,255,0) 100%);
+          height: calc(100% - 28px);
+        }
+        .leftTwocontent {
+          background:linear-gradient(0deg,rgba(0,138,255,.1) 0%,rgba(0,138,255,0) 100%);
+          height: calc(100% - 28px);
+        }
+        .leftThreecontent {
+          background:linear-gradient(0deg,rgba(0,138,255,.1) 0%,rgba(0,138,255,0) 100%);
+          height: calc(100% - 28px);
+        }
+        .rightOnecontent {
+          background:linear-gradient(0deg,rgba(0,138,255,.1) 0%,rgba(0,138,255,0) 100%);
+          height: calc(100% - 28px);
+        }
+        .rightTwocontent {
+          background:linear-gradient(0deg,rgba(0,138,255,.1) 0%,rgba(0,138,255,0) 100%);
+          height: calc(100% - 28px);
+        }
+        .rightThreecontent {
+          background:linear-gradient(0deg,rgba(0,138,255,.1) 0%,rgba(0,138,255,0) 100%);
+          height: calc(100% - 28px);
+        }
+        .rightFourcontent {
+          background:linear-gradient(0deg,rgba(0,138,255,.1) 0%,rgba(0,138,255,0) 100%);
+          height: calc(100% - 28px);
+        }
+      }
+    }
+    .flex-left {
+      flex: 1;
+      display: flex;
+      height: 100%;
+      .flex-left-2 {
+        flex: 0.207;
+        margin-top: 4px;
+      }
+      .flex-left-3 {
+        flex: 0.293;
+        margin-top: 16px;
+      }
+      .flex-left-4 {
+        flex: 0.339;
+        margin-top: 16px;
+      }
+    }
+    .flex-center {
+      .flex-center-1 {
+        flex: 0.081;
+      }
+      .flex-center-5 {
+        flex: 0.482;
+      }
+      .flex-center-2 {
+        flex: 0.235;
+      }
+    }
+    .flex-center {
+      .flex-center-2 {
+        margin: 0 24px;
+      }
+      .flex-center-5-5 {
+        flex: 0.548;
+        margin-right: 24px;
+      }
+      .flex-center-3-3 {
+        flex: 0.37;
+      }
+    }
+    .flex-right {
+      .flex-right-3 {
+        flex: 0.283;
+        margin-top: 4px;
+      }
+      .flex-right-1 {
+        flex: 0.143;
+        margin-top: 16px;
+      }
+      .flex-right-2 {
+        flex: 0.202;
+        margin-top: 16px;
+      }
+      .flex-right-2-2 {
+        flex: 0.206;
+        margin-top: 16px;
       }
     }
   }
