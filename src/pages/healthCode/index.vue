@@ -37,16 +37,18 @@
                 <div class="flex-cell flex-center-5"></div>
                 <div class="flex-cell flex-center-2">
                   <div class="flex-col">
-                    <div class="flex-cell flex-right-3">
-                      <SubTitle :subTitle="rightOneTitle"/>
-                      <div class="centerOnecontent">
+                    <div class="flex-row">
+                      <div class="flex-cell flex-center-5-5">
+                        <SubTitle :subTitle="centerOnecontent"/>
+                        <div class="centerOnecontent">
 
+                        </div>
                       </div>
-                    </div>
-                    <div class="flex-cell flex-right-1">
-                      <SubTitle :subTitle="rightTwoTitle"/>
-                      <div class="centerTwocontent">
+                      <div class="flex-cell flex-center-3-3">
+                        <SubTitle :subTitle="centerTwocontent"/>
+                        <div class="centerTwocontent">
 
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -315,6 +317,13 @@ export default {
     .flex-center {
       .flex-center-2 {
         margin: 0 24px;
+      }
+      .flex-center-5-5 {
+        flex: 0.548;
+        margin-right: 24px;
+      }
+      .flex-center-3-3 {
+        flex: 0.37;
       }
     }
     .flex-right {
