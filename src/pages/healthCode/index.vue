@@ -20,7 +20,7 @@
                 <div class="flex-cell flex-left-3">
                   <SubTitle :subTitle="leftTwoTitle"/>
                   <div class="leftTwocontent">
-
+                    <PeopleEcharts />
                   </div>
                 </div>
                 <div class="flex-cell flex-left-4">
@@ -94,6 +94,7 @@
 import Header from './components/header';
 import SubTitle from './components/subTitle';
 import ApplyEcharts from '@/components/echarts/applyEcharts';
+import PeopleEcharts from '@/components/echarts/peopleEcharts';
 export default {
   data() {
     return {
@@ -113,6 +114,7 @@ export default {
     Header,
     SubTitle,
     ApplyEcharts,
+    PeopleEcharts,
   },
   mounted() {
    let _that=this;
