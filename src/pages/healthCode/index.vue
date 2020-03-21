@@ -34,7 +34,9 @@
             <div class="flex-cell flex-cell-4 flex-center">
               <div class="flex-col">
                 <div class="flex-cell flex-center-1"></div>
-                <div class="flex-cell flex-center-5"></div>
+                <div class="flex-cell flex-center-5">
+                  <mapEcharts />
+                </div>
                 <div class="flex-cell flex-center-2">
                   <div class="flex-col">
                     <div class="flex-row">
@@ -95,6 +97,7 @@ import Header from './components/header';
 import SubTitle from './components/subTitle';
 import ApplyEcharts from '@/components/echarts/applyEcharts';
 import PeopleEcharts from '@/components/echarts/peopleEcharts';
+import mapEcharts from '@/components/echarts/mapEcharts';
 export default {
   data() {
     return {
@@ -115,6 +118,7 @@ export default {
     SubTitle,
     ApplyEcharts,
     PeopleEcharts,
+    mapEcharts
   },
   mounted() {
    let _that=this;

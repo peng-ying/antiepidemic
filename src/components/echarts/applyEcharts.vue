@@ -9,6 +9,7 @@ export default {
 
     }
   },
+  props: ['echartsData'],
   created() {
     this.$nextTick(() => {
       this.initEcharts();
