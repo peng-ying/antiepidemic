@@ -9,7 +9,7 @@ export default {
 
     }
   },
-  props: [data],
+  props: [echartsData],
   methods: {
     initEcharts() {
       // 基于准备好的dom，初始化echarts实例
