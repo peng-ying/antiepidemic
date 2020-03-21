@@ -9,16 +9,13 @@ export default {
 
     }
   },
-<<<<<<< HEAD
-  props: [echartsData],
-=======
+  props: ['echartsData'],
   created() {
     this.$nextTick(() => {
       this.initEcharts();
     })
   },
   // props: [data],
->>>>>>> cc4930f7660f1445632aa89f7508cc52b6d75bd7
   methods: {
     initEcharts() {
       debugger
