@@ -7,7 +7,12 @@ export default {
   data() {
     return {}
   },
-  props: [echartsData],
+  props: ['echartsData'],
+  created() {
+     this.$nextTick(() => {
+      this.initEcharts();
+    })
+  },
   methods: {
     initEcharts() {
       let myChart = this.$echarts.init(document.getElementById('age'));
@@ -102,7 +107,7 @@ export default {
           position:'right'
         }],
         grid: [{
-            right: '50%',
+          right: '50%',
         }, {
             left: '50%'
         }],
@@ -111,10 +116,10 @@ export default {
           {
             type: 'bar',
             name: '男性',
-            barWidth: 20,
+            barWidth: '5',
             seriesLayoutBy: 'row',
             itemStyle:{
-              color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
+              color: new this.$echarts.graphic.LinearGradient(0, 0, 1, 0, [{
                   offset: 0,
                   color: '#7BD2FF' // 0% 处的颜色
               }, {
@@ -155,12 +160,12 @@ export default {
           {
               type: 'bar',
               name: '女性',
-              barWidth: 20,
+              barWidth: '5',
               seriesLayoutBy: 'row',
               xAxisIndex: 1,
               yAxisIndex: 1,
               itemStyle:{
-                  color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
+                  color: new this.$echarts.graphic.LinearGradient(0, 0, 1, 0, [{
                       offset: 0,
                       color: '#F26DAC' // 0% 处的颜色
                   }, {

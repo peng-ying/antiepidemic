@@ -23,7 +23,7 @@ export default {
       // this.$axios.get("../static/hunan.json").then(res => {
       //   console.log(res)
       // })
-      debugger
+      // debugger
       console.log(this.mapname, geoJson)
       // 基于准备好的dom，初始化echarts实例
       let myChart = this.$echarts.init(document.getElementById("map"));
@@ -94,7 +94,7 @@ export default {
           tooltip: {
             trigger: "item",
             formatter: function(params, ticket, callback) {
-              console.log(params);
+              // console.log(params);
               var tipHtml = "";
               var dataList = params.data;
               var str = "";
