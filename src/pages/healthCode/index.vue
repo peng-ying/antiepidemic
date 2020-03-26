@@ -59,11 +59,35 @@
             </div>
             <div class="flex-cell flex-cell-4 flex-center">
               <div class="flex-col">
-                <div class="flex-cell flex-center-1"></div>
+                <div class="flex-cell flex-center-1">
+                  <el-row>
+                    <el-col :span="8">
+                      <div class="grid-content">
+                        <p class="sum">申请人数</p>
+                        <p class="num">5555555<span>人</span></p>
+                        <p class="increase">昨日新增：956人</p>
+                      </div>
+                    </el-col>
+                    <el-col :span="8">
+                      <div class="grid-content">
+                        <p class="sum">发放人数</p>
+                        <p class="num">5555555<span>人</span></p>
+                        <p class="increase">昨日新增：956人</p>
+                      </div>
+                    </el-col>
+                    <el-col :span="8">
+                      <div class="grid-content">
+                        <p class="sum">发放人数</p>
+                        <p class="num">5555555<span>人</span></p>
+                        <p class="increase">昨日新增：956人</p>
+                      </div>
+                    </el-col>
+                  </el-row>
+                </div>
                 <div class="flex-cell flex-center-5">
                   <mapEcharts />
                 </div>
-                <div class="flex-cell flex-center-2">
+                <!-- <div class="flex-cell flex-center-2">
                   <div class="flex-col">
                     <div class="flex-row">
                       <div class="flex-cell flex-center-5-5">
@@ -80,7 +104,7 @@
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
             <div class="flex-cell flex-cell-2 flex-right">
@@ -390,6 +414,7 @@ export default {
         .rightTwocontent {
           background:linear-gradient(0deg,rgba(0,138,255,.1) 0%,rgba(0,138,255,0) 100%);
           height: calc(100% - 28px);
+          padding-top: 10px;
         }
         .rightThreecontent {
           background:linear-gradient(0deg,rgba(0,138,255,.1) 0%,rgba(0,138,255,0) 100%);
@@ -420,10 +445,49 @@ export default {
     }
     .flex-center {
       .flex-center-1 {
-        flex: 0.081;
+        // flex: 0.181;
+        flex: 0.190;
+        .el-row {
+          width: 80%;
+          height: 100%;
+          margin-left: 10%;
+          margin-top: 36px;
+        }
+        .grid-content {
+          // color: #ffffff;
+          // border: 1px solid white;
+          p {
+            margin: 0;
+          }
+          .sum {
+            font-size:14px;
+            font-family:SourceHanSansCN;
+            font-weight:400;
+            color:rgba(255,255,255,1);
+            line-height:36px;
+          }
+          .num {
+            font-size:32px;
+            font-family:DINNextW1G;
+            font-weight:normal;
+            color:rgba(255,255,255,1);
+            line-height:48px;
+            span {
+              font-size: 14px;
+            }
+          }
+          .increase {
+            font-size:14px;
+            font-family:SourceHanSansCN;
+            font-weight:400;
+            color:rgba(128,197,255,1);
+            line-height: 24px;
+          }
+        }
       }
       .flex-center-5 {
-        flex: 0.482;
+        // flex: 0.482;
+        flex: 0.6;
       }
       .flex-center-2 {
         flex: 0.235;

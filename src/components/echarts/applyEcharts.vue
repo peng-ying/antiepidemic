@@ -46,7 +46,7 @@ export default {
         },
         grid: {
           left: '10%',
-          top: '10%',
+          top: '25%',
           bottom: '5%',
           right: '5%',
         },
@@ -126,6 +126,10 @@ export default {
                   color: '#45A3E3'
                 },
             },
+            label:{
+                show: true,
+                color: '#1AACFA'
+            }
           },
           {
             symbolSize: 6,
@@ -139,6 +143,10 @@ export default {
                   // borderWidth: 10,
                   color: '#90D887'
               }
+            },
+            label:{
+                show: true,
+                color: '#77DD5D'
             }
           }]
       })

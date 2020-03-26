@@ -32,7 +32,9 @@ export default {
       this.$echarts.registerMap(this.mapname, geoJson);
       myChart.setOption({
           geo: {
-            map: 'hubei'
+            map: 'hubei',
+            aspectScale: 1,
+            zoom: 1.2,
           },
           //  backgroundColor: "rgb(230, 238, 243)",
           color: ["white"],
@@ -61,25 +63,25 @@ export default {
                 min: 10000,
                 max: 90000,
                 label: ">50000",
-                color: "#043154"
+                color: "#00355C"
               },
               {
                 min: 5000,
                 max: 9999,
                 label: "5000-9999",
-                color: "#044374"
+                color: "#063A68"
               },
               {
-                min: 500,
+                min: 1000,
                 max: 4999,
-                label: "1000-4999",
-                color: "#03579D"
+                label: "500-4999",
+                color: "#074980"
               },
               {
                 min: 0,
-                max: 500,
-                label: "0-500",
-                color: "#0269BF"
+                max: 1000,
+                label: "0-1000",
+                color: "#095597"
               }
             ],
             orient: "vertical",
@@ -119,6 +121,10 @@ export default {
               type: "map",
               mapType: this.mapname,
               showLegendSymbol: false,
+              zoom: 1.2,
+              aspectScale: 1,
+              layoutCenter: ['30%', '30%'],
+              scale: 1,
               label: {
                 normal: {
                   show: true,
@@ -137,7 +143,11 @@ export default {
               },
               itemStyle: {
                 borderColor: "#0E7EEA",
-                borderWidth: "2"
+                borderWidth: "2",
+                shadowColor: "#0063BF",
+                shadowBlur: 10,
+                shadowOffsetX: 3,
+                shadowOffsetY: -2
               },
 
               data: [
