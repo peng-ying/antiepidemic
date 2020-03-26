@@ -7,7 +7,7 @@ export default {
   data() {
     return {}
   },
-  props: [echartsData],
+  // props: [echartsData],
   methods: {
     initEcharts() {
       let myChart = this.$echarts.init(document.getElementById('age'));
@@ -30,7 +30,7 @@ export default {
               show: false
           },
           axisTick:{
-              show:false  
+              show:false
           },
           axisLabel: {
               color: '#80C5FF',
@@ -50,7 +50,7 @@ export default {
               show: false
           },
           axisTick:{
-              show:false  
+              show:false
           },
           axisLabel: {
               color: '#80C5FF',
@@ -67,7 +67,7 @@ export default {
           gridIndex: 0,
           type: 'category',
           axisTick:{
-              show:false  
+              show:false
           },
           axisLine:{
               show: false,
@@ -86,7 +86,7 @@ export default {
         }, {
           gridIndex: 1,
           axisTick:{
-              show:false  
+              show:false
           },
           axisLine:{
               show: false

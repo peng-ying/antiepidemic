@@ -20,13 +20,13 @@
                 <div class="flex-cell flex-left-3">
                   <SubTitle :subTitle="leftTwoTitle"/>
                   <div class="leftTwocontent">
-                    <PeopleEcharts />
+                    <SexAndAgeEcharts />
                   </div>
                 </div>
                 <div class="flex-cell flex-left-4">
                   <SubTitle :subTitle="leftThreeTitle"/>
                   <div class="leftThreecontent">
-
+                    <Swiper />
                   </div>
                 </div>
               </div>
@@ -97,7 +97,9 @@ import Header from './components/header';
 import SubTitle from './components/subTitle';
 import ApplyEcharts from '@/components/echarts/applyEcharts';
 import PeopleEcharts from '@/components/echarts/peopleEcharts';
+import SexAndAgeEcharts from '@/components/echarts/sexAndAgeEcharts';
 import mapEcharts from '@/components/echarts/mapEcharts';
+import Swiper from '@/components/swiper';
 export default {
   data() {
     return {
@@ -118,7 +120,9 @@ export default {
     SubTitle,
     ApplyEcharts,
     PeopleEcharts,
-    mapEcharts
+    SexAndAgeEcharts,
+    mapEcharts,
+    Swiper
   },
   mounted() {
    let _that=this;
