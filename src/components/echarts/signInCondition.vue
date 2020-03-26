@@ -11,6 +11,12 @@ export default {
 
     }
   },
+  props: ['echartsData'],
+  created() {
+    this.$nextTick(() => {
+      this.initEcharts()
+    })
+  },
   methods: {
     initEcharts() {
       let myChart = this.$echarts.init(document.getElementById('signIn'));
@@ -39,19 +45,23 @@ export default {
         },
           grid: {
               left: '10%',
-              top: '10%',
+              top: '25%',
               bottom: '5%',
               right: '5%',
           },
           legend: {
               type: "scroll",
-              right: '5%',
-              data:['申请人数','发放人数'],
+              // right: '5%',
+              data:['验码次数','通过率'],
               itemWidth:18,
               itemHeight:12,
               textStyle: {
-                  fontSize:14
+                  fontSize:14,
+                  color: 'white'
               },
+              // formatter:  (name) => {
+              //   return `${name} + `
+              // }
           },
           yAxis: [
               {
@@ -69,7 +79,11 @@ export default {
                       show: false
                   },
                   axisLine: {
-                      show: true
+                      show: true,
+                      lineStyle: {
+                          color: '#EDFFFF',
+                          width: '1'
+                      }
                   },
                   axisTick: {
                       show: false
@@ -95,7 +109,11 @@ export default {
                       show: false
                   },
                   axisLine: {
-                      show: true
+                      show: true,
+                      lineStyle: {
+                          color: '#EDFFFF',
+                          width: '1'
+                      }
                   },
                   axisTick: {
                       show: false
@@ -137,13 +155,15 @@ export default {
           series: [
               {
                   symbolSize: 6,
-                  name: '申请人数',
+                  name: '验码次数',
                   type: "line",
                   yAxisIndex: 0,
                   data: [23,43,54,46,56,10] ,
+                  symbol: 'circle',
                   itemStyle: {
                       normal: {
-                          borderWidth: 10,
+                          // borderWidth: 10,
+                          color: '#45A3E3'
                       }
                   },
                   label:{
@@ -153,13 +173,15 @@ export default {
               },
               {
                   symbolSize: 6,
-                  name: '发放人数',
+                  name: '通过率',
                   type: "line",
                   yAxisIndex: 1,
                   data: [3,23,34,26,15,8] ,
+                  symbol: 'circle',
                   itemStyle: {
                       normal: {
-                          borderWidth: 10,
+                          // borderWidth: 10,
+                          color: '#90D887'
                       }
                   },
                   label:{

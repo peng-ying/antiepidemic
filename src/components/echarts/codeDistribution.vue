@@ -1,5 +1,6 @@
 <template>
-  <div class="codeDistribution" style="width:100%;height:100%"></div>
+<!-- 健康码发布情况 -->
+  <div id="codeDistribution" style="width:100%;height:100%"></div>
 </template>
 
 <script>
@@ -7,7 +8,12 @@ export default {
   data() {
     return {}
   },
-  props: [echartsData],
+  props: ['echartsData'],
+  created() {
+    this.$nextTick(() => {
+      this.initEcharts();
+    })
+  },
   methods: {
     initEcharts() {
       let myChart = this.$echarts.init(document.getElementById('codeDistribution'));
@@ -32,17 +38,18 @@ export default {
         }]
           
         var titleArr= [], seriesArr=[];
-        colors=[['#83A1B0', '#424A5F'], ['#FF7A7A', '#D12727'], ['#F1F35B', '#A3A513'], ['#44EE54', '#078C0D']]
-        data.forEach(function(item, index){
+        let colors=[['#83A1B0', '#424A5F'], ['#FF7A7A', '#D12727'], ['#F1F35B', '#A3A513'], ['#44EE54', '#078C0D']]
+        data.forEach((item, index) => {
             titleArr.push(
                 {
                     text:item.name,
-                    left: index * 20 + 10 +'%',
+                    left: index * 25 + 12 +'%',
                     top: '58%',
                     textAlign: 'center',
                     textStyle: {
-                        fontWeight: 'normal',
-                        fontSize: '16',
+                        fontWeight: '100',
+                        fontFamily:'DINNextW1G',
+                        fontSize: '14',
                         color: colors[index][0],
                         textAlign: 'center',
                     },
@@ -53,7 +60,8 @@ export default {
                     name: item.name,
                     type: 'pie',
                     clockWise: false,
-                    radius: [50, 60],
+                    left: '10',
+                    radius: [35, 40],
                     startAngle: -130,
                     itemStyle:  {
                         normal: {
@@ -80,8 +88,8 @@ export default {
                             }
                         }
                     },
-                    hoverOffset: 8,
-                    center: [index * 20 + 10 +'%', '50%'],
+                    hoverOffset: 5,
+                    center: [index * 25 + 12 +'%', '50%'],
                     data: [
                         {// 空白部分
                             value: 30,
@@ -119,7 +127,7 @@ export default {
                             name: '税种五',
                             itemStyle: {
                                 normal: {
-                                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                    color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{
                                         offset: 0,
                                         color: item.color[0] // 0% 处的颜色 浅
                                     }, {
@@ -144,7 +152,7 @@ export default {
         
           
       let option = {
-          backgroundColor: "#fff",
+          // backgroundColor: "#fff",
           title:titleArr,
           series: seriesArr
       }

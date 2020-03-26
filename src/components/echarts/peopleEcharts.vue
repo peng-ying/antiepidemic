@@ -6,9 +6,9 @@
 export default {
   data() {
     return {
-        myData:['老年(66岁以后)', '中年(48-65岁)', '壮年(41-48岁)', '青年(18-40岁)','少年(7-17岁)'],
-        femaleValue: [1341, 24211, 46060, 41765, 61251],
-        maleValue: [4723, 45523, 80739, 65923, 91583],
+        myData:['老年(66岁以后)', '中年(48-65岁)', '壮年(41-48岁)', '青年(18-40岁)','少年(7-17岁)', '童年(2.5岁-6岁)','幼儿(0-2.5岁)'],
+        femaleValue: [1341, 24211, 46060, 41765, 61251, 88747, 66666],
+        maleValue: [4723, 45523, 80739, 65923, 91583, 55555, 44445],
     }
   },
   created() {
@@ -19,7 +19,7 @@ export default {
   // props: [data],
   methods: {
     initEcharts() {
-      debugger
+      // debugger
       // 基于准备好的dom，初始化echarts实例
       let myChart = this.$echarts.init(document.getElementById('people'));
 
@@ -30,7 +30,7 @@ export default {
             },
             selectedMode:false,
         },
-        backgroundColor: '#0b214a',
+        // backgroundColor: '#0b214a',
         tooltip : {
             trigger: 'axis',
             axisPointer : {            // 坐标轴指示器，坐标轴触发有效
@@ -125,6 +125,12 @@ export default {
             type: 'category',
             inverse: true,
             position: 'left',
+            name: '年龄段',
+            nameLocation: 'start',
+            nameTextStyle: {
+              color: '#ffffff',
+              padding: [0,350,0,0]
+            },
             axisLine: {
                 show: true,
             },
@@ -133,7 +139,7 @@ export default {
             },
             axisLabel: {
                 show: true,
-                color:'#fff'
+                color:'#80C5FF'
             },
             data: this.myData,
 
@@ -157,7 +163,13 @@ export default {
             gridIndex: 2,
             type: 'category',
             inverse: true,
-            position: 'left',
+            position: 'right',
+            name: '整体性别比',
+            nameLocation: 'start',
+            nameTextStyle: {
+              color: '#ffffff',
+              padding: [0,0,0,350]
+            },
             axisLine: {
                 show: false
             },
@@ -165,22 +177,29 @@ export default {
                 show: false
             },
             axisLabel: {
-                show: false,
+                show: true,
+                color:'#80C5FF'
             },
-            data: this.myData,
+            data: ['109','202','2','6','88','52','45'],
         }, ],
         series: [{
             name: '男',
             type: 'bar',
             barGap: 20,
-            barWidth: 20,
+            barWidth: 7,
             barCateGoryGap:20,
             stack: '入',
             xAxisIndex: 0,
             yAxisIndex: 0,
             itemStyle: {
                 normal: {
-                    color: 'rgba(1,255,252,0.65)',
+                  color: new this.$echarts.graphic.LinearGradient(0, 0, 1, 0, [{
+                      offset: 0,
+                      color: '#7BD2FF' // 0% 处的颜色
+                  }, {
+                      offset: 1,
+                      color: '#0C9BFF' // 100% 处的颜色
+                  }], false),
                     barBorderRadius: [30, 0, 0, 30]
                 }
             },
@@ -189,12 +208,18 @@ export default {
             name: '女',
             type: 'bar',
             barGap: 20,
-            barWidth: 20,
+            barWidth: 7,
             barCateGoryGap:20,
             stack: '出',
             itemStyle: {
                 normal: {
-                    color: 'rgba(252,191,166,0.65)',
+                  color: new this.$echarts.graphic.LinearGradient(0, 0, 1, 0, [{
+                      offset: 0,
+                      color: '#F26DAC' // 0% 处的颜色
+                  }, {
+                      offset: 1,
+                      color: '#F186B8' // 100% 处的颜色
+                  }], false),
                     barBorderRadius: [0, 30, 30, 0]
                 }
             },

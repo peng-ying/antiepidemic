@@ -18,7 +18,7 @@ export default {
   // props: [data],
   methods: {
     initEcharts() {
-      debugger
+      // debugger
       // 基于准备好的dom，初始化echarts实例
       let myChart = this.$echarts.init(document.getElementById('apply'));
 
@@ -31,7 +31,7 @@ export default {
               show: true,
               trigger: 'axis'
           },
-          backgroundColor: '#05325E',
+          // backgroundColor: '#05325E',
           textStyle: {
               color: '#80C5FF',
           },
@@ -46,7 +46,7 @@ export default {
         },
         grid: {
           left: '10%',
-          top: '10%',
+          top: '25%',
           bottom: '5%',
           right: '5%',
         },
@@ -54,11 +54,14 @@ export default {
           type: "scroll",
           right: '5%',
           data:['申请人数','发放人数'],
-            itemWidth:18,
-            itemHeight:12,
-            textStyle: {
-              fontSize:14
-            },
+          itemWidth:18,
+          itemHeight:12,
+          textStyle: {
+            fontSize:14
+          },
+          textStyle:{
+            color: '#EDFFFF'
+          }
         },
         yAxis: [
           {
@@ -94,7 +97,7 @@ export default {
                 show: true,
                 lineStyle: {
                   color: '#EDFFFF',
-                  width: '2'
+                  width: '1'
                 }
             },
             axisLabel: {
@@ -116,11 +119,17 @@ export default {
             type: "line",
             yAxisIndex: 0,
             data: [23,43,54,46,56,10] ,
+            symbol: 'circle',
             itemStyle: {
                 normal: {
-                    borderWidth: 10,
-                }
+                    // borderWidth: 10,
+                  color: '#45A3E3'
+                },
             },
+            label:{
+                show: true,
+                color: '#1AACFA'
+            }
           },
           {
             symbolSize: 6,
@@ -128,10 +137,16 @@ export default {
             type: "line",
             yAxisIndex: 0,
             data: [3,23,34,26,15,8] ,
+            symbol: 'circle',
             itemStyle: {
               normal: {
-                  borderWidth: 10,
+                  // borderWidth: 10,
+                  color: '#90D887'
               }
+            },
+            label:{
+                show: true,
+                color: '#77DD5D'
             }
           }]
       })
