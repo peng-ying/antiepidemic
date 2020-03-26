@@ -46,12 +46,12 @@ export default {
               titleArr.push(
                   {
                       text:item.name,
-                      left: index * 25 + 12 +'%',
-                      top: '58%',
+                      left: index * 25 + 11 +'%',
+                      top: '80%',
                       textAlign: 'center',
                       textStyle: {
                           fontWeight: 'normal',
-                          fontSize: '16',
+                          fontSize: '14',
                           color: '#80C5FF',
                           textAlign: 'center',
                       },
@@ -90,7 +90,7 @@ export default {
                           }
                       },
                       hoverOffset: 8,
-                      center: [index * 25 + 12 +'%', '50%'],
+                      center: [index * 25 + 12 +'%', '55%'],
                       data: [
                           {// 空白部分
                               value: 30,

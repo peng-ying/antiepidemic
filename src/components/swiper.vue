@@ -5,7 +5,7 @@
         <div>验码城市排行</div>
       </div>
       <div class="close">
-        <img src="../assets/imgs/icon-关闭.png" alt="" srcset="">
+        <img src="../assets/imgs/icon-关闭.png" alt="" srcset="" @click="close">
       </div>
     </div>
     <Swiper :options="swiperOption">
@@ -28,20 +28,31 @@ export default {
     Swiper,
     SwiperSlide
   },
+  props: ['slide'],
   data() {
     return {
       swiperOption: {
         pagination: {
           el: ".swiper-pagination", //分页器作用对象
           clickable: true //分页器小圆点是否可点击
+        },
+        navigation: {
+          prevtButton: true,
+          nextButton: true
         }
       },
-      slide: [1, 2, 3, 4]
+      // slide: [1, 2, 3, 4]
     };
   },
   directives: {
     swiper: directive
-  }
+  },
+  methods: {
+    close() {
+      // 关闭弹窗@
+      this.$emit('closeSwiper')
+    }
+  },
 };
 </script>
 

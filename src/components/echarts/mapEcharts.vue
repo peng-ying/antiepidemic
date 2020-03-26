@@ -24,7 +24,7 @@ export default {
       //   console.log(res)
       // })
       // debugger
-      console.log(this.mapname, geoJson)
+      // console.log(this.mapname, geoJson)
       // 基于准备好的dom，初始化echarts实例
       let myChart = this.$echarts.init(document.getElementById("map"));
       myChart.hideLoading();
@@ -51,12 +51,13 @@ export default {
           visualMap: {
             min: 0,
             max: 10000,
-            left: "right",
+            // left: "right",
+            right: '5%',
             top: "top",
             text: ["申请人数"],
             // 文本，默认为数值文本
             //calculable: true,
-            //color: ['blue', 'blue']
+            color: ['#ffffff', '#ffffff'],
             //图例颜色
             pieces: [
               {

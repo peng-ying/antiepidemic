@@ -29,7 +29,7 @@
                     <div class="leftThree-echart">
                       <healthCode />
                     </div>
-                    <div class="table-box">
+                    <!-- <div class="table-box">
                       <table class="table">
                         <thead class="table-head">
                           <th>序号</th>
@@ -52,7 +52,8 @@
                           </tr>
                         </tbody>
                       </table>
-                    </div>
+                    </div> -->
+                    <testTable  :tableInfo="codeTable"/>
                   </div>
                 </div>
               </div>
@@ -85,7 +86,12 @@
                   </el-row>
                 </div>
                 <div class="flex-cell flex-center-5">
-                  <mapEcharts />
+                  <div class="mapEcharts">
+                    <mapEcharts />
+                  </div>
+                  <div class="swiper flex-center-5">
+                    <Swiper :slide="slideInfo" v-if="showSwiper" @closeSwiper="closeSwiper"/>
+                  </div>
                 </div>
                 <!-- <div class="flex-cell flex-center-2">
                   <div class="flex-col">
@@ -116,73 +122,30 @@
                   </div>
                 </div>
                 <div class="flex-cell flex-right-1">
-                  <SubTitle :subTitle="rightTwoTitle"/>
+                  <SubTitle :subTitle="rightTwoTitle" :showInfo="showInfo" @showDetail="showDetail"/>
                   <div class="rightTwocontent">
                     <tripMode />
                   </div>
                 </div>
                 <div class="flex-cell flex-right-2">
-                  <SubTitle :subTitle="rightThreeTitle"/>
+                  <SubTitle :subTitle="rightThreeTitle" :showInfo="showInfo" @showDetail="showDetail"/>
                   <div class="rightThreecontent">
-                    <div class="table-box">
-                      <table class="table">
-                        <thead class="table-head">
-                          <th>序号</th>
-                          <th>城市排行</th>
-                          <th>验码次数</th>
-                          <th>卡口数量</th>
-                          <th>通过人次</th>
-                          <th>通过车次</th>
-                          <th>通过率</th>
-                        </thead>
-                        <tbody class="table-body">
-                          <tr v-for="item in cityRankTable" :key="item.index">
-                            <td>{{item.index}}</td>
-                            <td>{{item.rank}}</td>
-                            <td>{{item.checkTimes}}</td>
-                            <td>{{item.entrances}}</td>
-                            <td>{{item.passPerson}}</td>
-                            <td>{{item.passCars}}</td>
-                            <td>{{item.passRate}}%</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
+                    <testTable  :tableInfo="cityRankTable"/>
                   </div>
                 </div>
                 <div class="flex-cell flex-right-2-2">
-                  <SubTitle :subTitle="rightFourTitle"/>
+                  <SubTitle :subTitle="rightFourTitle" :showInfo="showInfo" @showDetail="showDetail"/>
                   <div class="rightFourcontent">
-                    <div class="table-box">
-                      <table class="table">
-                        <thead class="table-head">
-                          <th>序号</th>
-                          <th>卡口名称</th>
-                          <th>验码次数</th>
-                          <th>城市名称</th>
-                          <th>通过人次</th>
-                          <th>通过车次</th>
-                          <th>通过率</th>
-                        </thead>
-                        <tbody class="table-body">
-                          <tr v-for="item in entranceRankTable" :key="item.index">
-                            <td>{{item.index}}</td>
-                            <td>{{item.name}}</td>
-                            <td>{{item.checkTimes}}</td>
-                            <td>{{item.city}}</td>
-                            <td>{{item.passPerson}}</td>
-                            <td>{{item.passCars}}</td>
-                            <td>{{item.passRate}}%</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
+                    <testTable  :tableInfo="entranceRankTable"/>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+
+        
+
       </div>
     </div>
   </div>
@@ -193,12 +156,13 @@ import Header from './components/header';
 import SubTitle from './components/subTitle';
 import ApplyEcharts from '@/components/echarts/applyEcharts';
 import PeopleEcharts from '@/components/echarts/peopleEcharts';
-import SexAndAgeEcharts from '@/components/echarts/sexAndAgeEcharts';
+import SexAndAgeEcharts from '@/components/echarts/peopleEcharts';
 import mapEcharts from '@/components/echarts/mapEcharts';
 import Swiper from '@/components/swiper';
 import healthCode from '@/components/echarts/codeDistribution';
 import checkCode from '@/components/echarts/signInCondition';
 import tripMode from '@/components/echarts/tripMode';
+import testTable from '@/components/table'
 export default {
   data() {
     return {
@@ -212,31 +176,73 @@ export default {
       rightFourTitle: '验码卡口排行',
       centerOnecontent: '打卡情况',
       centerTwocontent: '打卡人群健康情况',
-      codeTable: [
-        {index: 1, cityName: '荆门市', applyPeople: 500, red: 33333, yellow: 200, green: 60, passRate: 10},
-        {index: 2, cityName: '荆门市', applyPeople: 500, red: 33333, yellow: 200, green: 60, passRate: 10},
-        {index: 3, cityName: '荆门市', applyPeople: 500, red: 33333, yellow: 200, green: 60, passRate: 10},
-        {index: 4, cityName: '荆门市', applyPeople: 500, red: 33333, yellow: 200, green: 60, passRate: 10},
-        {index: 5, cityName: '荆门市', applyPeople: 500, red: 33333, yellow: 200, green: 60, passRate: 10},
-        {index: 6, cityName: '荆门市', applyPeople: 500, red: 33333, yellow: 200, green: 60, passRate: 10},
-        {index: 7, cityName: '荆门市', applyPeople: 500, red: 33333, yellow: 200, green: 60, passRate: 10},
+      showInfo: true,
+      showSwiper: false,
+      slideInfo: [
+        // {
+        //   index: 1,
+        //   component: tripMode
+        // },
+        // {
+        //   index: 2,
+        //   component: 
+        // }
       ],
-      cityRankTable: [
-        {index: 1, rank: 12, checkTimes: 500, entrances: 1000, passPerson: 200, passCars: 60, passRate: 10},
-        {index: 2, rank: 12, checkTimes: 500, entrances: 1000, passPerson: 200, passCars: 60, passRate: 10},
-        {index: 3, rank: 12, checkTimes: 500, entrances: 1000, passPerson: 200, passCars: 60, passRate: 10},
-        {index: 4, rank: 12, checkTimes: 500, entrances: 1000, passPerson: 200, passCars: 60, passRate: 10},
-        {index: 5, rank: 12, checkTimes: 500, entrances: 1000, passPerson: 200, passCars: 60, passRate: 10},
-        {index: 6, rank: 12, checkTimes: 500, entrances: 1000, passPerson: 200, passCars: 60, passRate: 10},
-      ],
-      entranceRankTable: [
-        {index: 1, name: '卡口一', checkTimes: 500, city: '荆门市', passPerson: 200, passCars: 60, passRate: 10},
-        {index: 2, name: '卡口一', checkTimes: 500, city: '荆门市', passPerson: 200, passCars: 60, passRate: 10},
-        {index: 3, name: '卡口一', checkTimes: 500, city: '荆门市', passPerson: 200, passCars: 60, passRate: 10},
-        {index: 4, name: '卡口一', checkTimes: 500, city: '荆门市', passPerson: 200, passCars: 60, passRate: 10},
-        {index: 5, name: '卡口一', checkTimes: 500, city: '荆门市', passPerson: 200, passCars: 60, passRate: 10},
-        {index: 6, name: '卡口一', checkTimes: 500, city: '荆门市', passPerson: 200, passCars: 60, passRate: 10},
-      ]
+      codeTable: {
+        type: 'code',
+        styleObject: {
+          height: '115px',
+          overflowY: 'scroll'
+        },
+        head: [
+          "序号", "城市名称", "申请人数", "红码", "黄码", "绿码", "通过率"
+        ],
+        tableData: [
+          {index: 1, cityName: '荆门市', applyPeople: 500, red: 33333, yellow: 200, green: 60, passRate: 10},
+          {index: 2, cityName: '荆门市', applyPeople: 500, red: 33333, yellow: 200, green: 60, passRate: 10},
+          {index: 3, cityName: '荆门市', applyPeople: 500, red: 33333, yellow: 200, green: 60, passRate: 10},
+          {index: 4, cityName: '荆门市', applyPeople: 500, red: 33333, yellow: 200, green: 60, passRate: 10},
+          {index: 5, cityName: '荆门市', applyPeople: 500, red: 33333, yellow: 200, green: 60, passRate: 10},
+          {index: 6, cityName: '荆门市', applyPeople: 500, red: 33333, yellow: 200, green: 60, passRate: 10},
+          {index: 7, cityName: '荆门市', applyPeople: 500, red: 33333, yellow: 200, green: 60, passRate: 10},
+        ]
+      },
+      cityRankTable: {
+        type: 'city',
+        styleObject: {
+          height: '110px',
+          overflowY: 'scroll'
+        },
+        head: [
+          "序号", "城市排名", "验码次数", "卡口数量", "通过人次", "通过车次", "通过率"
+        ],
+        tableData: [
+          {index: 1, rank: 12, checkTimes: 500, entrances: 1000, passPerson: 200, passCars: 60, passRate: 10},
+          {index: 2, rank: 12, checkTimes: 500, entrances: 1000, passPerson: 200, passCars: 60, passRate: 10},
+          {index: 3, rank: 12, checkTimes: 500, entrances: 1000, passPerson: 200, passCars: 60, passRate: 10},
+          {index: 4, rank: 12, checkTimes: 500, entrances: 1000, passPerson: 200, passCars: 60, passRate: 10},
+          {index: 5, rank: 12, checkTimes: 500, entrances: 1000, passPerson: 200, passCars: 60, passRate: 10},
+          {index: 6, rank: 12, checkTimes: 500, entrances: 1000, passPerson: 200, passCars: 60, passRate: 10},
+        ],
+      },
+      entranceRankTable: {
+        type: 'entrance',
+        styleObject: {
+          height: '110px',
+          overflowY: 'scroll'
+        },
+        head: [
+          "序号", "卡口名称", "验码次数", "城市名称", "通过人次", "通过车次", "通过率"
+        ],
+        tableData: [
+          {index: 1, name: '卡口一', checkTimes: 500, cityName: '荆门市', passPerson: 200, passCars: 60, passRate: 10},
+          {index: 2, name: '卡口一', checkTimes: 500, cityName: '荆门市', passPerson: 200, passCars: 60, passRate: 10},
+          {index: 3, name: '卡口一', checkTimes: 500, cityName: '荆门市', passPerson: 200, passCars: 60, passRate: 10},
+          {index: 4, name: '卡口一', checkTimes: 500, cityName: '荆门市', passPerson: 200, passCars: 60, passRate: 10},
+          {index: 5, name: '卡口一', checkTimes: 500, cityName: '荆门市', passPerson: 200, passCars: 60, passRate: 10},
+          {index: 6, name: '卡口一', checkTimes: 500, cityName: '荆门市', passPerson: 200, passCars: 60, passRate: 10},
+        ]
+      }
     }
   },
   components: {
@@ -250,7 +256,8 @@ export default {
     mapEcharts,
     healthCode,
     checkCode,
-    tripMode
+    tripMode,
+    testTable
   },
   mounted() {
    let _that=this;
@@ -303,6 +310,14 @@ export default {
         this.isFullscreen=!this.isFullscreen;
         this.FullScreen(document.getElementById("canvasPaintArea"));
     },
+    showDetail() {
+      // 点击详情
+      this.showSwiper = true
+    },
+    closeSwiper() {
+      // 关闭轮播
+      this.showSwiper = false
+    }
   }
 }
 </script>
@@ -419,7 +434,7 @@ export default {
         .rightTwocontent {
           background:linear-gradient(0deg,rgba(0,138,255,.1) 0%,rgba(0,138,255,0) 100%);
           height: calc(100% - 28px);
-          padding-top: 10px;
+          // padding-top: 10px;
         }
         .rightThreecontent {
           background:linear-gradient(0deg,rgba(0,138,255,.1) 0%,rgba(0,138,255,0) 100%);
@@ -493,6 +508,20 @@ export default {
       .flex-center-5 {
         // flex: 0.482;
         flex: 0.6;
+        position: relative;
+        .mapEcharts {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          z-index: 1;
+        }
+        .swiper{
+          width: 90%;
+          height: 100%;
+          position: absolute;
+          left: 5%;
+          z-index: 2;
+        }
       }
       .flex-center-2 {
         flex: 0.235;
