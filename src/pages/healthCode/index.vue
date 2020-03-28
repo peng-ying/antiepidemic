@@ -89,8 +89,8 @@
                   <div class="mapEcharts">
                     <mapEcharts />
                   </div>
-                  <div class="swiper flex-center-5">
-                    <Swiper :swiperData="slideInfo" v-if="showSwiper" :active="swiperActive" @closeSwiper="closeSwiper"/>
+                  <div class="swiper flex-center-5" v-if="showSwiper" >
+                    <Swiper :swiperData="slideInfo" :active="swiperActive" @closeSwiper="closeSwiper"/>
                   </div>
                 </div>
                 <!-- <div class="flex-cell flex-center-2">

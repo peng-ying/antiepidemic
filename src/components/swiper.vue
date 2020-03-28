@@ -1,28 +1,34 @@
 <template>
   <div class="swiper-content">
-    <div class="title">
-      <div class="text">
-        <div>验码城市排行</div>
-      </div>
+    <!-- <div class="title"> -->
       <div class="close">
         <img src="../assets/imgs/icon-关闭.png" alt="" srcset="" @click="close">
       </div>
-    </div>
+    <!-- </div> -->
     <Swiper :options="swiperOption" ref="mySwiper">
       <!-- <SwiperSlide class="swiper-slide" v-for="(item,index) in slide" :key="index"> -->
       <SwiperSlide class="swiper-slide">
         <!-- slide{{item}} -->
         <div style="padding: 0 10% 0 10%">
+          <div class="text">
+            <div>验码出行方式</div>
+          </div>
           <tripMode />
         </div>
       </SwiperSlide>
       <SwiperSlide class="swiper-slide">
         <div style="padding: 0 10% 0 10%">
+          <div class="text">
+            <div>验码城市排行</div>
+          </div>
           <testTable :tableInfo="swiperData.cityRankTable" />
         </div>
       </SwiperSlide>
       <SwiperSlide class="swiper-slide">
         <div style="padding: 0 10% 0 10%">
+          <div class="text">
+            <div>验码卡口排行</div>
+          </div>
           <testTable :tableInfo="swiperData.entranceRankTable"/>
         </div>
       </SwiperSlide>
@@ -67,6 +73,7 @@ export default {
         }
       },
       slide: [1, 2, 3, 4],
+      title: ''
     };
   },
   directives: {
@@ -93,14 +100,31 @@ export default {
   background-position: center center;
   height: 520px;
   max-width: 805px;
-  .title {
-    padding-top: 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 39px;
-    .text {
-      width: calc(100% - 43px);
+  // position: relative;
+  // .title {
+  //   padding-top: 60px;
+  //   display: flex;
+  //   justify-content: space-between;
+  //   align-items: center;
+  //   height: 39px;
+    
+    .close {
+      position: absolute;
+      top: 60px;
+      right: 0;
+      z-index: 2;
+      img {
+        width: 18px;
+        height: 18px;
+        margin-right: 25px;
+      }
+      cursor: pointer;
+    }
+  // }
+  .text {
+    margin-top: 60px;
+    margin-bottom: 22px;
+      // width: calc(100% - 43px);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -128,20 +152,11 @@ export default {
         font-size: 18px;
       }
     }
-    .close {
-      img {
-        width: 18px;
-        height: 18px;
-        margin-right: 25px;
-      }
-    }
-  }
   .swiper-slide {
-    height: 400px;
+    height: 100%;
     // width: 80%!important;
     // margin-left: 10%;
     // margin: 22px 10% 0 10%;
-    margin-top: 22px;
     font-size: 50px;
     text-align: center;
     // line-height: 400px;
