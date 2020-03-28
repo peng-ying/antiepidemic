@@ -8,12 +8,28 @@
         <img src="../assets/imgs/icon-关闭.png" alt="" srcset="" @click="close">
       </div>
     </div>
-    <Swiper :options="swiperOption">
-      <SwiperSlide class="swiper-slide" v-for="(item,index) in slide" :key="index">
-        slide{{item}}
+    <Swiper :options="swiperOption" ref="mySwiper">
+      <!-- <SwiperSlide class="swiper-slide" v-for="(item,index) in slide" :key="index"> -->
+      <SwiperSlide class="swiper-slide">
+        <!-- slide{{item}} -->
+        <div style="padding: 0 10% 0 10%">
+          <tripMode />
+        </div>
+      </SwiperSlide>
+      <SwiperSlide class="swiper-slide">
+        <div style="padding: 0 10% 0 10%">
+          <testTable :tableInfo="swiperData.cityRankTable" />
+        </div>
+      </SwiperSlide>
+      <SwiperSlide class="swiper-slide">
+        <div style="padding: 0 10% 0 10%">
+          <testTable :tableInfo="swiperData.entranceRankTable"/>
+        </div>
       </SwiperSlide>
       <!-- 分页器 -->
       <div class="swiper-pagination" slot="pagination"></div>
+      <div class="swiper-button-prev" slot="button-prev"></div>  <!-- 箭头左 --> 
+      <div class="swiper-button-next" slot="button-next"></div>  <!-- 箭头右 -->
     </Swiper>
   </div>
 </template>
@@ -22,13 +38,20 @@
 import "swiper/css/swiper.css";
 import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
+import tripMode from '@/components/echarts/tripMode';
+import testTable from '@/components/table'
 
 export default {
   components: {
     Swiper,
-    SwiperSlide
+    SwiperSlide,
+    tripMode,
+    testTable
   },
-  props: ['slide'],
+  props: ['swiperData'],
+  created() {
+    console.log(this.swiperData)
+  },
   data() {
     return {
       swiperOption: {
@@ -37,11 +60,11 @@ export default {
           clickable: true //分页器小圆点是否可点击
         },
         navigation: {
-          prevtButton: true,
-          nextButton: true
+          nextEl: '.swiper-button-next', 
+          prevEl: '.swiper-button-prev'
         }
       },
-      // slide: [1, 2, 3, 4]
+      slide: [1, 2, 3, 4],
     };
   },
   directives: {
@@ -51,7 +74,7 @@ export default {
     close() {
       // 关闭弹窗@
       this.$emit('closeSwiper')
-    }
+    },
   },
 };
 </script>
@@ -108,9 +131,14 @@ export default {
   }
   .swiper-slide {
     height: 400px;
+    // width: 80%!important;
+    // margin-left: 10%;
+    // margin: 22px 10% 0 10%;
+    margin-top: 22px;
     font-size: 50px;
     text-align: center;
-    line-height: 400px;
+    // line-height: 400px;
   }
 }
 </style>
+

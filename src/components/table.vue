@@ -22,15 +22,35 @@
         </tr>
       </tbody>
     </table>
+
+    <div class="pager-box" v-if="tableInfo.pager">
+      <el-pagination
+        background
+        :current-page="currentPage"
+        :page-size="pageSize"
+        layout="prev, pager, next"
+        :total="total"
+        @current-change="currentChange">
+      </el-pagination>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   data() {
-    return {}
+    return {
+      currentPage: 1,
+      pageSize: 10,
+      total: 20
+    }
   },
-  props: ['tableInfo']
+  props: ['tableInfo'],
+  methods: {
+    currentChange() {
+
+    }
+  },
 }
 </script>
 
@@ -85,4 +105,29 @@ export default {
     // }
   }
 }
+</style>
+<style>
+  .pager-box .el-pagination {
+    float: right;
+    margin-top: 35px;
+  }
+  .pager-box .el-pagination.is-background .el-pager li:not(.disabled).active {
+    background-color: rgba(24,104,174,1);; 
+    color: #fff;
+  }
+  .pager-box .el-pagination.is-background .el-pager li:not(.disabled){
+    background-color: transparent; 
+    color:rgba(129,135,145,1);
+    border:1px solid rgba(24,104,174,1);
+    font-weight: 200;
+    border-radius: 4px;
+  }
+  .pager-box .el-pagination .btn-prev, .pager-box .el-pagination .btn-next{
+    background: transparent;
+    border:1px solid rgba(24,104,174,1);
+    border-radius: 4px;
+  }
+  .el-pagination__jump, .el-input__inner {
+    color:rgba(129,135,145,1);
+  }
 </style>

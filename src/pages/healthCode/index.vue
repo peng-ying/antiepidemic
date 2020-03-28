@@ -90,7 +90,7 @@
                     <mapEcharts />
                   </div>
                   <div class="swiper flex-center-5">
-                    <Swiper :slide="slideInfo" v-if="showSwiper" @closeSwiper="closeSwiper"/>
+                    <Swiper :swiperData="slideInfo" v-if="showSwiper" @closeSwiper="closeSwiper"/>
                   </div>
                 </div>
                 <!-- <div class="flex-cell flex-center-2">
@@ -178,16 +178,55 @@ export default {
       centerTwocontent: '打卡人群健康情况',
       showInfo: true,
       showSwiper: false,
-      slideInfo: [
-        // {
-        //   index: 1,
-        //   component: tripMode
-        // },
-        // {
-        //   index: 2,
-        //   component: 
-        // }
-      ],
+      slideInfo: {
+        tripData:{},
+        cityRankTable: {
+        type: 'city',
+        styleObject: {
+          background: 'rgba(25,101,165,0.7)',
+          height: '250px',
+          overflow: 'hidden'
+        },
+        pager: true,
+        head: [
+          "序号", "城市排名", "验码次数", "卡口数量", "通过人次", "通过车次", "通过率"
+        ],
+        tableData: [
+          {index: 1, rank: 12, checkTimes: 500, entrances: 1000, passPerson: 200, passCars: 60, passRate: 10},
+          {index: 2, rank: 12, checkTimes: 500, entrances: 1000, passPerson: 200, passCars: 60, passRate: 10},
+          {index: 3, rank: 12, checkTimes: 500, entrances: 1000, passPerson: 200, passCars: 60, passRate: 10},
+          {index: 4, rank: 12, checkTimes: 500, entrances: 1000, passPerson: 200, passCars: 60, passRate: 10},
+          {index: 5, rank: 12, checkTimes: 500, entrances: 1000, passPerson: 200, passCars: 60, passRate: 10},
+          {index: 6, rank: 12, checkTimes: 500, entrances: 1000, passPerson: 200, passCars: 60, passRate: 10},
+          {index: 3, rank: 12, checkTimes: 500, entrances: 1000, passPerson: 200, passCars: 60, passRate: 10},
+          {index: 4, rank: 12, checkTimes: 500, entrances: 1000, passPerson: 200, passCars: 60, passRate: 10},
+          {index: 5, rank: 12, checkTimes: 500, entrances: 1000, passPerson: 200, passCars: 60, passRate: 10},
+          {index: 6, rank: 12, checkTimes: 500, entrances: 1000, passPerson: 200, passCars: 60, passRate: 10},
+          {index: 6, rank: 12, checkTimes: 500, entrances: 1000, passPerson: 200, passCars: 60, passRate: 10},
+          {index: 6, rank: 12, checkTimes: 500, entrances: 1000, passPerson: 200, passCars: 60, passRate: 10},
+          {index: 6, rank: 12, checkTimes: 500, entrances: 1000, passPerson: 200, passCars: 60, passRate: 10},
+        ],
+      },
+        entranceRankTable: {
+        type: 'entrance',
+        styleObject: {
+          background: 'rgba(25,101,165,0.7)',
+          height: '250px',
+        },
+        pager: true,  
+        head: [
+          "序号", "卡口名称", "验码次数", "城市名称", "通过人次", "通过车次", "通过率"
+        ],
+        tableData: [
+          {index: 1, name: '卡口一', checkTimes: 500, cityName: '荆门市', passPerson: 200, passCars: 60, passRate: 10},
+          {index: 2, name: '卡口一', checkTimes: 500, cityName: '荆门市', passPerson: 200, passCars: 60, passRate: 10},
+          {index: 3, name: '卡口一', checkTimes: 500, cityName: '荆门市', passPerson: 200, passCars: 60, passRate: 10},
+          {index: 4, name: '卡口一', checkTimes: 500, cityName: '荆门市', passPerson: 200, passCars: 60, passRate: 10},
+          {index: 5, name: '卡口一', checkTimes: 500, cityName: '荆门市', passPerson: 200, passCars: 60, passRate: 10},
+          {index: 6, name: '卡口一', checkTimes: 500, cityName: '荆门市', passPerson: 200, passCars: 60, passRate: 10},
+        ]
+      }
+      },
       codeTable: {
         type: 'code',
         styleObject: {
