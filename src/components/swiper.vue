@@ -48,9 +48,11 @@ export default {
     tripMode,
     testTable
   },
-  props: ['swiperData'],
-  created() {
-    console.log(this.swiperData)
+  props: ['swiperData', 'active'],
+  mounted() {
+    // 跳转到指定页
+   this.swiper.slideTo(this.active, 1000, false)
+   console.log(this.active)
   },
   data() {
     return {
@@ -75,6 +77,11 @@ export default {
       // 关闭弹窗@
       this.$emit('closeSwiper')
     },
+  },
+  computed: {
+    swiper() {
+      return this.$refs.mySwiper.$swiper
+    }
   },
 };
 </script>
