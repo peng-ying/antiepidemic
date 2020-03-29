@@ -42,24 +42,21 @@ export default {
   },
   watch: {
     echartsData: function(newV, oldV) {
-      if(newV === oldV || newV !== oldV) {
-        debugger
-        this.data.forEach(item => {
-          if(item.name === '方式一') {
-            item.value = newV.checkOneRatio * newV.checkOne
-            item.ratio = newV.checkOneRatio
-          } else if(item.name === '方式二') {
-            item.value = newV.checkTwoRatio * newV.checkTwo
-            item.ratio = newV.checkTwoRatio
-          } else if(item.name === '方式三') {
-            item.value = newV.checkThreeRatio * newV.checkThree
-            item.ratio = newV.checkThreeRatio
-          } else {
-            item.value = newV.checkFourRatio * newV.checkFour
-            item.ratio = newV.checkFourRatio
-          }
-        })
-      }
+      this.data.forEach(item => {
+        if(item.name === '方式一') {
+          item.value = newV.checkOneRatio * newV.checkOne
+          item.ratio = newV.checkOneRatio
+        } else if(item.name === '方式二') {
+          item.value = newV.checkTwoRatio * newV.checkTwo
+          item.ratio = newV.checkTwoRatio
+        } else if(item.name === '方式三') {
+          item.value = newV.checkThreeRatio * newV.checkThree
+          item.ratio = newV.checkThreeRatio
+        } else {
+          item.value = newV.checkFourRatio * newV.checkFour
+          item.ratio = newV.checkFourRatio
+        }
+      })
       deep: true
       immediate: true,
       console.log(this.data)
