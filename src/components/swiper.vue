@@ -13,7 +13,7 @@
           <div class="text">
             <div>验码出行方式</div>
           </div>
-          <tripMode />
+          <tripMode :id="'trip'" :echartsData="swiperData.tripData"/>
         </div>
       </SwiperSlide>
       <SwiperSlide class="swiper-slide">

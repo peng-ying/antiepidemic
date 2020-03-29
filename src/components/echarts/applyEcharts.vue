@@ -1,26 +1,38 @@
 <template>
-  <div id="apply" style="width: 100%;height: 100%;"></div>
+  <div :id="id" style="width: 100%;height: 100%;"></div>
 </template>
 
 <script>
 export default {
   data() {
     return {
-
+      xAxisData: [],
+      apply: [],
+      grant: []
     }
   },
-  props: ['echartsData'],
+  props: ['id', 'echartsData'],
   created() {
     this.$nextTick(() => {
       this.initEcharts();
     })
   },
-  // props: [data],
+  watch: {
+    echartsData: function(newV, oldV) {
+      newV.map(item => {
+        // debugger
+        this.xAxisData.push(item.reportDate.slice(5))
+        this.apply.push(item.applyTotal)
+        this.grant.push(item.grantTotal)
+      })
+      this.initEcharts()
+    }
+  },
   methods: {
     initEcharts() {
       // debugger
       // 基于准备好的dom，初始化echarts实例
-      let myChart = this.$echarts.init(document.getElementById('apply'));
+      let myChart = this.$echarts.init(document.getElementById(this.id));
 
       myChart.setOption({
         color: ['#45A3E3','#90D887'],
@@ -36,7 +48,7 @@ export default {
               color: '#80C5FF',
           },
           formatter: (params) => {
-            console.log(params)
+            // console.log(params)
             return (
               `
               日期：${params[0].name}<br />${params[0].seriesName}: ${params[0].value}<br />${params[1].seriesName}: ${params[1].value}
@@ -47,7 +59,7 @@ export default {
         grid: {
           left: '10%',
           top: '25%',
-          bottom: '5%',
+          bottom: '15%',
           right: '5%',
         },
         legend: {
@@ -84,7 +96,7 @@ export default {
               fontSize: 14,
               color: '#F0FBFF'
             },
-            minInterval : 15
+            // minInterval : 15
           },
         ],
         xAxis: [
@@ -101,15 +113,16 @@ export default {
                 }
             },
             axisLabel: {
-                inside: false,
+                // inside: false,
+                show:true,
                 textStyle: {
                   fontWeight: 'normal',
                   fontSize: '14',
-                  lineHeight: 22
+                  // lineHeight: 22
                 }
 
             },
-            data: ['2-9','2-10', '2-11', '2-12', '2-12', '2-13'],
+            data: this.xAxisData
           },
         ],
         series: [
@@ -118,7 +131,7 @@ export default {
             name: '申请人数',
             type: "line",
             yAxisIndex: 0,
-            data: [23,43,54,46,56,10] ,
+            data: this.apply,
             symbol: 'circle',
             itemStyle: {
                 normal: {
@@ -136,7 +149,7 @@ export default {
             name: '发放人数',
             type: "line",
             yAxisIndex: 0,
-            data: [3,23,34,26,15,8] ,
+            data: this.grant ,
             symbol: 'circle',
             itemStyle: {
               normal: {

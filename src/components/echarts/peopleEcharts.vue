@@ -1,14 +1,15 @@
 <template>
-  <div id="people" style="width: 100%;height: 100%;"></div>
+  <div :id="id" style="width: 100%;height: 80%;"></div>
 </template>
 
 <script>
 export default {
   data() {
     return {
-        myData:['老年(66岁以后)', '中年(48-65岁)', '壮年(41-48岁)', '青年(18-40岁)','少年(7-17岁)', '童年(2.5岁-6岁)','幼儿(0-2.5岁)'],
-        femaleValue: [1341, 24211, 46060, 41765, 61251, 88747, 66666],
-        maleValue: [4723, 45523, 80739, 65923, 91583, 55555, 44445],
+        myData:[],
+        percent: [],
+        femaleValue: [],
+        maleValue: [],
     }
   },
   created() {
@@ -16,20 +17,48 @@ export default {
       this.initEcharts();
     })
   },
-  // props: [data],
+  props: ['id', 'echartsData'],
+  watch: {
+    echartsData: function(newV, oldV) {
+      this.myData = []
+      this.percent = []
+      this.maleValue = []
+      this.femaleValue =[]
+      let maleArray = newV.filter(item => {
+        return item.sex === '男'
+      })
+      let femaleArray = newV.filter(item => {
+        return item.sex === '女'
+      })
+      maleArray.map(item => {
+        let age = item.ageRange, name = item.ageName
+        let str = `${name}(${age})`
+        this.myData.push(str)
+        item.applyNum ? this.maleValue.push(item.applyNum) : this.maleValue.push(item.grantNum)
+      })
+      femaleArray.map(item => {
+        item.applyNum ? this.femaleValue.push(item.applyNum) : this.femaleValue.push(item.grantNum)
+      })
+      this.maleValue.map((v, i) => {
+        this.percent.push((v / this.femaleValue[i]).toFixed(1))
+      })
+      this.initEcharts()
+      // console.log(newV)
+    }
+  },
   methods: {
     initEcharts() {
       // debugger
       // 基于准备好的dom，初始化echarts实例
-      let myChart = this.$echarts.init(document.getElementById('people'));
+      let myChart = this.$echarts.init(document.getElementById(this.id));
 
       myChart.setOption({
-        legend:{data:['男','女'],
-            textStyle: {
-                color: '#fff'
-            },
-            selectedMode:false,
-        },
+        // legend:{data:['男','女'],
+        //     textStyle: {
+        //         color: '#fff'
+        //     },
+        //     selectedMode:false,
+        // },
         // backgroundColor: '#0b214a',
         tooltip : {
             trigger: 'axis',
@@ -40,21 +69,21 @@ export default {
         grid: [{
             show: false,
             left: '4%',
-            top: 60,
-            bottom: 20,
+            top: 40,
+            bottom: 0,
             containLabel: true,
             width: '49%'
         }, {
             show: false,
             left: '50.5%',
-            top: 60,
-            bottom: 20,
+            top: 40,
+            bottom: 0,
             width: '0%'
         }, {
             show: false,
             right: '5%',
-            top: 60,
-            bottom: 20,
+            top: 40,
+            bottom: 0,
             containLabel: true,
             width: '42%'
         }],
@@ -129,7 +158,7 @@ export default {
             nameLocation: 'start',
             nameTextStyle: {
               color: '#ffffff',
-              padding: [0,350,0,0]
+              padding: [0,400,0,0]
             },
             axisLine: {
                 show: true,
@@ -180,7 +209,7 @@ export default {
                 show: true,
                 color:'#80C5FF'
             },
-            data: ['109','202','2','6','88','52','45'],
+            data: this.percent
         }, ],
         series: [{
             name: '男',

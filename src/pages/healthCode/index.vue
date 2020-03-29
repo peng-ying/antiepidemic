@@ -14,20 +14,27 @@
                 <div class="flex-cell flex-left-2">
                   <SubTitle :subTitle="leftOneTitle"/>
                   <div class="leftOnecontent">
-                    <ApplyEcharts />
+                    <ApplyEcharts :id="'apply'" :echartsData="applyData" />
                   </div>
                 </div>
                 <div class="flex-cell flex-left-3">
                   <SubTitle :subTitle="leftTwoTitle"/>
                   <div class="leftTwocontent">
-                    <SexAndAgeEcharts />
+                    <div class="btns">
+                      <div 
+                        v-for="(item, index) in btn" 
+                        :key="index"
+                        @click="peopleChooseType(index)"
+                        :class="{active: currentIndex === index}">{{item}}</div>
+                    </div>
+                    <SexAndAgeEcharts :id="'people'" :echartsData="subPeopleData"/>
                   </div>
                 </div>
                 <div class="flex-cell flex-left-4">
                   <SubTitle :subTitle="leftThreeTitle"/>
                   <div class="leftThreecontent">
                     <div class="leftThree-echart">
-                      <healthCode />
+                      <healthCode :id="'codeDistribution'" :echartsData="codeData" />
                     </div>
                     <!-- <div class="table-box">
                       <table class="table">
@@ -65,29 +72,29 @@
                     <el-col :span="8">
                       <div class="grid-content">
                         <p class="sum">申请人数</p>
-                        <p class="num">5555555<span>人</span></p>
-                        <p class="increase">昨日新增：956人</p>
+                        <p class="num">{{totalData.applyTotal}}<span>人</span></p>
+                        <p class="increase">昨日新增：{{totalData.applyYesterday}}人</p>
                       </div>
                     </el-col>
                     <el-col :span="8">
                       <div class="grid-content">
                         <p class="sum">发放人数</p>
-                        <p class="num">5555555<span>人</span></p>
-                        <p class="increase">昨日新增：956人</p>
+                        <p class="num">{{totalData.grantTotal}}<span>人</span></p>
+                        <p class="increase">昨日新增：{{totalData.grantYesterday}}人</p>
                       </div>
                     </el-col>
                     <el-col :span="8">
                       <div class="grid-content">
-                        <p class="sum">发放人数</p>
-                        <p class="num">5555555<span>人</span></p>
-                        <p class="increase">昨日新增：956人</p>
+                        <p class="sum">验码次数</p>
+                        <p class="num">{{totalData.checkTotal}}<span>人</span></p>
+                        <p class="increase">昨日新增：{{totalData.checkYesterday}}人</p>
                       </div>
                     </el-col>
                   </el-row>
                 </div>
                 <div class="flex-cell flex-center-5">
                   <div class="mapEcharts">
-                    <mapEcharts />
+                    <mapEcharts :id="'map'" :echartsData="mapData" />
                   </div>
                   <div class="swiper flex-center-5" v-if="showSwiper" >
                     <Swiper :swiperData="slideInfo" :active="swiperActive" @closeSwiper="closeSwiper"/>
@@ -118,13 +125,13 @@
                 <div class="flex-cell flex-right-3">
                   <SubTitle :subTitle="rightOneTitle"/>
                   <div class="rightOnecontent">
-                    <checkCode />
+                    <checkCode :id="'check'" :echartsData="checkCodeData"/>
                   </div>
                 </div>
                 <div class="flex-cell flex-right-1">
                   <SubTitle :subTitle="rightTwoTitle" :showInfo="showInfo" @showDetail="showDetail(0)"/>
                   <div class="rightTwocontent">
-                    <tripMode />
+                    <tripMode :id="'tripMode'" :echartsData="tripModeData"/>
                   </div>
                 </div>
                 <div class="flex-cell flex-right-2">
@@ -163,6 +170,7 @@ import healthCode from '@/components/echarts/codeDistribution';
 import checkCode from '@/components/echarts/signInCondition';
 import tripMode from '@/components/echarts/tripMode';
 import testTable from '@/components/table'
+import { getData } from '../../api/ncov.js'
 export default {
   data() {
     return {
@@ -176,10 +184,20 @@ export default {
       rightFourTitle: '验码卡口排行',
       centerOnecontent: '打卡情况',
       centerTwocontent: '打卡人群健康情况',
+      applyData: [],
+      btn: ['申请人数', '发放人数'],
+      peopleData: [],
+      subPeopleData: [],
+      currentIndex: 0,
+      codeData: [],
+      totalData: {},
+      mapData: [],
+      checkCodeData: [],
+      tripModeData: [],
       showInfo: true,
       showSwiper: false,
       slideInfo: {
-        tripData:{},
+        tripData:[],
         cityRankTable: {
           type: 'city',
           styleObject: {
@@ -207,11 +225,12 @@ export default {
             {index: 6, rank: 12, checkTimes: 500, entrances: 1000, passPerson: 200, passCars: 60, passRate: 10},
           ],
         },
-          entranceRankTable: {
+        entranceRankTable: {
           type: 'entrance',
           styleObject: {
             background: 'rgba(25,101,165,0.7)',
             height: '250px',
+            overflow: 'hidden'
           },
           pager: true,  
           head: [
@@ -254,7 +273,7 @@ export default {
           overflowY: 'scroll'
         },
         head: [
-          "序号", "城市排名", "验码次数", "卡口数量", "通过人次", "通过车次", "通过率"
+          "序号", "城市名称", "验码次数", "卡口数量", "通过人次", "通过车次", "通过率"
         ],
         tableData: [
           {index: 1, rank: 12, checkTimes: 500, entrances: 1000, passPerson: 200, passCars: 60, passRate: 10},
@@ -298,6 +317,9 @@ export default {
     checkCode,
     tripMode,
     testTable
+  },
+  created() {
+    this.initData()
   },
   mounted() {
    let _that=this;
@@ -350,8 +372,50 @@ export default {
         this.isFullscreen=!this.isFullscreen;
         this.FullScreen(document.getElementById("canvasPaintArea"));
     },
+    async initData() {
+      this.codeTable.tableData = []
+      this.cityRankTable.tableData = []
+      this.entranceRankTable.tableData = []
+      let params = {
+        pageNo: 1,
+        pageSize: 10
+      }
+      let res = await getData(params)
+      let {success, result} = res
+      if(success) {
+        this.applyData = result.leftOne
+        this.peopleData = result.leftTwo
+        // 默认显示申请人数
+        this.subPeopleData = result.leftTwo.applyList
+        this.codeData = result.leftThree.leftThree1
+        this.codeTable.tableData = result.leftThree.leftThree2
+        this.totalData = result.centerFour
+        this.mapData = result.centerFive
+        this.checkCodeData = result.rightSix.rightSix1
+        this.tripModeData = result.rightSeven
+        this.cityRankTable.tableData = result.rightEight
+        this.entranceRankTable.tableData = result.rightNine
+      }
+    },
+    peopleChooseType(index) {
+      this.currentIndex = index
+      if(index === 0) {
+        // 申请人数
+        this.subPeopleData = this.peopleData.applyList
+      } else {
+        // 发放人数
+        this.subPeopleData = this.peopleData.grantList
+      }
+    },
     showDetail(val) {
       // 点击详情
+      this.slideInfo.tripMode = [],
+      this.slideInfo.cityRankTable.tableData = []
+      this.slideInfo.entranceRankTable.tableData = []
+
+      this.slideInfo.tripMode = this.tripModeData
+      this.slideInfo.cityRankTable.tableData = this.cityRankTable.tableData
+      this.slideInfo.entranceRankTable.tableData = this.entranceRankTable.tableData
       this.showSwiper = true
       this.swiperActive = val
     },
@@ -459,6 +523,31 @@ export default {
         .leftTwocontent {
           background:linear-gradient(0deg,rgba(0,138,255,.1) 0%,rgba(0,138,255,0) 100%);
           height: calc(100% - 28px);
+          .btns {
+            padding-top: 16px;
+            div {
+              width:90px;
+              height:34px;
+              background:rgba(0,49,130,0.4);
+              border:1px solid rgba(28,146,255,1);
+              opacity:0.4;
+              color:rgba(255,255,255,1);
+              font-size: 14px;
+              display: inline-block;
+              line-height: 34px;
+              text-align: center;
+              cursor: pointer;
+            }
+            div:first-child {
+              margin-right: 12px;
+            }
+            .active {
+              background:rgba(0,49,130,0.2);
+              border:1px solid rgba(28,146,255,1);
+              box-shadow:2px 0px 16px 0px rgba(50,111,166,0.8);
+              color:rgba(28,146,255,1);
+            }
+          }
         }
         .leftThreecontent {
           background:linear-gradient(0deg,rgba(0,138,255,.1) 0%,rgba(0,138,255,0) 100%);

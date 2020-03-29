@@ -4,21 +4,37 @@
       <thead class="table-head">
         <th   v-for="(item, index) in tableInfo.head" :key="index">{{item}}</th>
       </thead>
-      <tbody class="table-body" :style="tableInfo.styleObject">
-        <tr v-for="item in tableInfo.tableData" :key="item.index">
-          <td>{{item.index}}</td>
-          <td v-if="tableInfo.type === 'city'">{{item.rank}}</td>
-          <td v-if="tableInfo.type === 'entrance'">{{item.name}}</td>
-          <td v-if="tableInfo.type !== 'code'">{{item.checkTimes}}</td>
-          <td v-if="tableInfo.type !== 'city'">{{item.cityName}}</td>
-          <td v-if="tableInfo.type === 'code'">{{item.applyPeople}}</td>
-          <td v-if="tableInfo.type === 'code'">{{item.red}}</td>
-          <td v-if="tableInfo.type === 'code'">{{item.yellow}}</td>
-          <td v-if="tableInfo.type === 'code'">{{item.green}}</td>
-          <td v-if="tableInfo.type === 'city'">{{item.entrances}}</td>
-          <td v-if="tableInfo.type !== 'code'">{{item.passPerson}}</td>
-          <td v-if="tableInfo.type !== 'code'">{{item.passCars}}</td>
-          <td>{{item.passRate}}%</td>
+      <tbody class="table-body" :style="tableInfo.styleObject" v-if="tableInfo.type === 'city'">
+        <tr v-for="(item, index) in tableInfo.tableData" :key="index">
+          <td>{{index + 1}}</td>
+          <td class="city" :title="item.city">{{item.city}}</td>
+          <td>{{item.checkTotal}}</td>
+          <td>{{item.bayonetTotal}}</td>
+          <td>{{item.bayonetPerson}}</td>
+          <td>{{item.bayonetCar}}</td>
+          <td>{{item.bayonetPassRatio}}%</td>
+        </tr>
+      </tbody>
+      <tbody class="table-body" :style="tableInfo.styleObject" v-if="tableInfo.type === 'code'">
+        <tr v-for="(item, index) in tableInfo.tableData" :key="index">
+          <td>{{index + 1}}</td>
+          <td class="city" :title="item.city">{{item.city}}</td>
+          <td>{{item.applyTotal}}</td>
+          <td>{{item.redTotal}}</td>
+          <td>{{item.yellowTotal}}</td>
+          <td>{{item.greenTotal}}</td>
+          <td>{{item.grantRatio}}%</td>
+        </tr>
+      </tbody>
+      <tbody class="table-body" :style="tableInfo.styleObject" v-if="tableInfo.type === 'entrance'">
+        <tr v-for="(item, index) in tableInfo.tableData" :key="index">
+          <td>{{index + 1}}</td>
+          <td>{{item.bayonetName}}</td>
+          <td>{{item.checkTotal}}</td>
+          <td class="city" :title="item.city">{{item.city}}</td>
+          <td>{{item.bayonetPerson}}</td>
+          <td>{{item.bayonetCar}}</td>
+          <td>{{item.bayonetPassRatio}}%</td>
         </tr>
       </tbody>
     </table>
@@ -92,6 +108,11 @@ export default {
       tr {
         color: #80C5FF;
         opacity:0.7;
+      }
+      .city {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
     .table-body::-webkit-scrollbar {

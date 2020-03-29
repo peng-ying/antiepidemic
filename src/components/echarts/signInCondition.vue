@@ -1,5 +1,5 @@
 <template>
-  <div id="signIn" style="width: 100%;height: 100%">
+  <div :id="id" style="width: 100%;height: 100%">
     <!-- 打卡和验码 -->
   </div>
 </template>
@@ -8,18 +8,32 @@
 export default {
   data() {
     return {
-
+      xAxisData: [],
+      check: [],
+      passRatio: []
     }
   },
-  props: ['echartsData'],
+  props: ['id', 'echartsData'],
   created() {
     this.$nextTick(() => {
       this.initEcharts()
     })
   },
+  watch: {
+    echartsData: function(newV, oldV) {
+      newV.map(item => {
+        // debugger
+        this.xAxisData.push(item.reportDate.slice(5))
+        this.check.push(item.checkTotal)
+        this.passRatio.push(item.checkPassRatio)
+      })
+      this.xAxisData = this.xAxisData.reverse()
+      this.initEcharts()
+    }
+  },
   methods: {
     initEcharts() {
-      let myChart = this.$echarts.init(document.getElementById('signIn'));
+      let myChart = this.$echarts.init(document.getElementById(this.id));
 
       let option = {
         color: ['#45A3E3','#90D887'],
@@ -46,8 +60,8 @@ export default {
           grid: {
               left: '10%',
               top: '25%',
-              bottom: '5%',
-              right: '5%',
+              bottom: '15%',
+              right: '10%',
           },
           legend: {
               type: "scroll",
@@ -93,7 +107,7 @@ export default {
                       fontSize: 14,
                       color: '#F0FBFF'
                   },
-                  minInterval : 15
+                  // minInterval : 15
               },
               {
                   type: 'value',
@@ -123,7 +137,7 @@ export default {
                       fontSize: 14,
                       color: '#F0FBFF'
                   },
-                  minInterval : 15
+                  // minInterval : 15
               }
           ],
           xAxis: [
@@ -149,7 +163,7 @@ export default {
 
                   },
                   //-----
-                  data: ['2-9','2-10', '2-11', '2-12', '2-12', '2-13'],
+                  data: this.xAxisData,
               },
           ],
           series: [
@@ -158,7 +172,7 @@ export default {
                   name: '验码次数',
                   type: "line",
                   yAxisIndex: 0,
-                  data: [23,43,54,46,56,10] ,
+                  data: this.check,
                   symbol: 'circle',
                   itemStyle: {
                       normal: {
@@ -176,7 +190,7 @@ export default {
                   name: '通过率',
                   type: "line",
                   yAxisIndex: 1,
-                  data: [3,23,34,26,15,8] ,
+                  data: this.passRatio ,
                   symbol: 'circle',
                   itemStyle: {
                       normal: {

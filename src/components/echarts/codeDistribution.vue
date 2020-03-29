@@ -1,45 +1,70 @@
 <template>
 <!-- 健康码发布情况 -->
-  <div id="codeDistribution" style="width:100%;height:100%"></div>
+  <div :id="id" style="width:100%;height:100%"></div>
 </template>
 
 <script>
 export default {
   data() {
-    return {}
+    return {
+      data: [
+        {
+            name: '灰码',
+            value: 0,
+            ratio: 0,
+            color: ['#83A1B0', '#424A5F']
+        },{
+            name: '红码',
+            value: 0,
+            ratio: 0,
+            color: ['#FF7A7A', '#D12727']
+        },{
+            name: '黄码',
+            value: 0,
+            ratio: 0,
+            color: ['#F1F35B', '#A3A513']
+        },{
+            name: '绿码',
+            value: 0,
+            ratio: 0,
+            color: ['#44EE54', '#078C0D']
+        }
+      ]
+    }
   },
-  props: ['echartsData'],
+  props: ['id', 'echartsData'],
   created() {
     this.$nextTick(() => {
       this.initEcharts();
     })
   },
+  watch: {
+    echartsData: function(newV, oldV) {
+      this.data.forEach(item => {
+        if(item.name === '灰码') {
+          item.value = newV.grayRatio * newV.grayTotal
+          item.ratio = newV.grayRatio
+        } else if(item.name === '红码') {
+          item.value = newV.redRatio * newV.redTotal
+          item.ratio = newV.redRatio
+        } else if(item.name === '黄码') {
+          item.value = newV.yellowRatio * newV.yellowTotal
+          item.ratio = newV.yellowRatio
+        } else {
+          item.value = newV.greenRatio * newV.greenTotal
+          item.ratio = newV.greenRatio
+        }
+      })
+      this.initEcharts()
+    }
+  },
   methods: {
     initEcharts() {
-      let myChart = this.$echarts.init(document.getElementById('codeDistribution'));
-
-      var data = [
-        {
-            name: '灰码',
-            value: 54,
-            color: ['#83A1B0', '#424A5F']
-        },{
-            name: '红码',
-            value: 44,
-            color: ['#FF7A7A', '#D12727']
-        },{
-            name: '黄码',
-            value: 35,
-            color: ['#F1F35B', '#A3A513']
-        },{
-            name: '绿码',
-            value: 90,
-            color: ['#44EE54', '#078C0D']
-        }]
+      let myChart = this.$echarts.init(document.getElementById(this.id));
           
         var titleArr= [], seriesArr=[];
         let colors=[['#83A1B0', '#424A5F'], ['#FF7A7A', '#D12727'], ['#F1F35B', '#A3A513'], ['#44EE54', '#078C0D']]
-        data.forEach((item, index) => {
+        this.data.forEach((item, index) => {
             titleArr.push(
                 {
                     text:item.name,
@@ -78,7 +103,7 @@ export default {
                     },
                     label: {
                         normal: {
-                            formatter: item.value + '%',
+                            formatter: item.ratio + '%',
                             position: 'center',
                             show: true,
                             textStyle: {
@@ -104,7 +129,7 @@ export default {
                             
                         },
                         {// 灰色部分
-                            value: 100-item.value,
+                            value: item.value / item.ratio - item.value,
                             itemStyle: {
                                 normal: {
                                     color: "#0C2B4A"

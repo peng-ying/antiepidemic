@@ -1,6 +1,6 @@
 <template>
   <!-- 地图分布 -->
-  <div id="map" style="width:100%;height: 100%"></div>
+  <div :id="id" style="width:100%;height: 100%"></div>
 </template>
 
 <script>
@@ -12,11 +12,17 @@ export default {
       mapname: 'hubei',
     };
   },
-  props: ["echartsData"],
+  props: ['id', "echartsData"],
   created() {
     this.$nextTick(() => {
       this.initEcharts();
     });
+  },
+  watch: {
+    echartsData: function(newV, oldV) {
+      console.log(newV)
+      this.initEcharts()
+    }
   },
   methods: {
     initEcharts() {
@@ -26,7 +32,7 @@ export default {
       // debugger
       // console.log(this.mapname, geoJson)
       // 基于准备好的dom，初始化echarts实例
-      let myChart = this.$echarts.init(document.getElementById("map"));
+      let myChart = this.$echarts.init(document.getElementById(this.id));
       myChart.hideLoading();
 
       this.$echarts.registerMap(this.mapname, geoJson);
@@ -99,21 +105,23 @@ export default {
             formatter: function(params, ticket, callback) {
               // console.log(params);
               var tipHtml = "";
-              var dataList = params.data;
+              var dataList = params.data.dataList;
               var str = "";
-              for (var i in dataList) {
+              dataList.map(i => {
                 tipHtml = `
-        <div style="padding:10px 10px 10px 20px;height:auto;fontSize: 15px;width:237px;border-radius:5px;background: #072D4E">
-            <span style="fontSize: 15px;"><span style="color: #80C5FF">城市名称：</span>${dataList.name}</span><br />
-            <span style="fontSize: 15px;"><span style="color: #80C5FF">申请人数 :</span> ${dataList.value}</span><br />
-            <span style="fontSize: 15px;"><span style="color: #FE7978">红码</span><span style="color: #80C5FF">人数 :</span> ${dataList.red}（20%）</span><br />
-            <span style="fontSize: 15px;"><span style="color: #EFF159">黄码</span><span style="color: #80C5FF">人数 :</span> ${dataList.yellow}（30%）</span><br />
-            <span style="fontSize: 15px;"><span style="color: #41EF52">绿码</span><span style="color: #80C5FF">人数 : </span>${dataList.green}（10%）</span><br />
-            <span style="fontSize: 15px;"><span style="color: #AFAFAF">灰码</span><span style="color: #80C5FF">人数 : </span>${dataList.grey}（40%）</span><br />
-        </div>
-        `;
-              }
-              return tipHtml;
+                  ${tipHtml}
+                  <span style="fontSize: 15px;"><span style="color: #FE7978"></span>${i.name}: ${i.value}${i.unit}</span><br />
+                `;
+              })
+              str = `
+                <div style="padding:10px 10px 10px 20px;height:auto;fontSize: 15px;width:237px;border-radius:5px;background: #072D4E">
+                    <span style="fontSize: 15px;"><span style="color: #80C5FF">城市名称：</span>${params.data.name}</span><br />
+                    <span style="fontSize: 15px;"><span style="color: #80C5FF">申请人数 :</span> ${params.data.value}</span><br />
+                    ${tipHtml}
+                </div>
+                `
+              
+              return str;
             }
           },
           series: [
@@ -150,145 +158,146 @@ export default {
                 shadowOffsetX: 3,
                 shadowOffsetY: -2
               },
+              data: this.echartsData
 
-              data: [
-                {
-                  name: "鄂州市",
-                  value: 1391,
-                  grey: 50,
-                  red: 60,
-                  yellow: 70,
-                  green: 80
-                },
-                {
-                  name: "恩施土家族苗族自治州",
-                  value: 252,
-                  grey: 50,
-                  red: 60,
-                  yellow: 70,
-                  green: 80
-                },
-                {
-                  name: "黄冈市",
-                  value: 2905,
-                  grey: 50,
-                  red: 60,
-                  yellow: 70,
-                  green: 80
-                },
-                {
-                  name: "黄石市",
-                  value: 1014,
-                  grey: 50,
-                  red: 60,
-                  yellow: 70,
-                  green: 80
-                },
-                {
-                  name: "荆门市",
-                  value: 925,
-                  grey: 50,
-                  red: 60,
-                  yellow: 70,
-                  green: 80
-                },
-                {
-                  name: "荆州市",
-                  value: 1579,
-                  grey: 50,
-                  red: 60,
-                  yellow: 70,
-                  green: 80
-                },
-                {
-                  name: "潜江市",
-                  value: 198,
-                  grey: 50,
-                  red: 60,
-                  yellow: 70,
-                  green: 80
-                },
-                {
-                  name: "神农架林区",
-                  value: 11,
-                  grey: 50,
-                  red: 60,
-                  yellow: 70,
-                  green: 80
-                },
-                {
-                  name: "十堰市",
-                  value: 672,
-                  grey: 50,
-                  red: 60,
-                  yellow: 70,
-                  green: 80
-                },
-                {
-                  name: "随州市",
-                  value: 1307,
-                  grey: 50,
-                  red: 60,
-                  yellow: 70,
-                  green: 80
-                },
-                {
-                  name: "天门市",
-                  value: 496,
-                  grey: 50,
-                  red: 60,
-                  yellow: 70,
-                  green: 80
-                },
-                {
-                  name: "武汉市",
-                  value: 49122,
-                  grey: 50,
-                  red: 60,
-                  yellow: 70,
-                  green: 80
-                },
-                {
-                  name: "仙桃市",
-                  value: 575,
-                  grey: 50,
-                  red: 60,
-                  yellow: 70,
-                  green: 80
-                },
-                {
-                  name: "咸宁市",
-                  value: 836,
-                  grey: 50,
-                  red: 60,
-                  yellow: 70,
-                  green: 80
-                },
-                {
-                  name: "襄阳市",
-                  value: 1175,
-                  grey: 50,
-                  red: 60,
-                  yellow: 70,
-                  green: 80
-                },
-                {
-                  name: "孝感市",
-                  value: 3518,
-                  grey: 50,
-                  red: 60,
-                  yellow: 70,
-                  green: 80
-                },
-                {
-                  name: "宜昌市",
-                  value: 931,
-                  grey: 50,
-                  red: 60,
-                  yellow: 70,
-                  green: 80
-                }
-              ]
+              // data: [
+              //   {
+              //     name: "鄂州市",
+              //     value: 1391,
+              //     grey: 50,
+              //     red: 60,
+              //     yellow: 70,
+              //     green: 80
+              //   },
+              //   {
+              //     name: "恩施土家族苗族自治州",
+              //     value: 252,
+              //     grey: 50,
+              //     red: 60,
+              //     yellow: 70,
+              //     green: 80
+              //   },
+              //   {
+              //     name: "黄冈市",
+              //     value: 2905,
+              //     grey: 50,
+              //     red: 60,
+              //     yellow: 70,
+              //     green: 80
+              //   },
+              //   {
+              //     name: "黄石市",
+              //     value: 1014,
+              //     grey: 50,
+              //     red: 60,
+              //     yellow: 70,
+              //     green: 80
+              //   },
+              //   {
+              //     name: "荆门市",
+              //     value: 925,
+              //     grey: 50,
+              //     red: 60,
+              //     yellow: 70,
+              //     green: 80
+              //   },
+              //   {
+              //     name: "荆州市",
+              //     value: 1579,
+              //     grey: 50,
+              //     red: 60,
+              //     yellow: 70,
+              //     green: 80
+              //   },
+              //   {
+              //     name: "潜江市",
+              //     value: 198,
+              //     grey: 50,
+              //     red: 60,
+              //     yellow: 70,
+              //     green: 80
+              //   },
+              //   {
+              //     name: "神农架林区",
+              //     value: 11,
+              //     grey: 50,
+              //     red: 60,
+              //     yellow: 70,
+              //     green: 80
+              //   },
+              //   {
+              //     name: "十堰市",
+              //     value: 672,
+              //     grey: 50,
+              //     red: 60,
+              //     yellow: 70,
+              //     green: 80
+              //   },
+              //   {
+              //     name: "随州市",
+              //     value: 1307,
+              //     grey: 50,
+              //     red: 60,
+              //     yellow: 70,
+              //     green: 80
+              //   },
+              //   {
+              //     name: "天门市",
+              //     value: 496,
+              //     grey: 50,
+              //     red: 60,
+              //     yellow: 70,
+              //     green: 80
+              //   },
+              //   {
+              //     name: "武汉市",
+              //     value: 49122,
+              //     grey: 50,
+              //     red: 60,
+              //     yellow: 70,
+              //     green: 80
+              //   },
+              //   {
+              //     name: "仙桃市",
+              //     value: 575,
+              //     grey: 50,
+              //     red: 60,
+              //     yellow: 70,
+              //     green: 80
+              //   },
+              //   {
+              //     name: "咸宁市",
+              //     value: 836,
+              //     grey: 50,
+              //     red: 60,
+              //     yellow: 70,
+              //     green: 80
+              //   },
+              //   {
+              //     name: "襄阳市",
+              //     value: 1175,
+              //     grey: 50,
+              //     red: 60,
+              //     yellow: 70,
+              //     green: 80
+              //   },
+              //   {
+              //     name: "孝感市",
+              //     value: 3518,
+              //     grey: 50,
+              //     red: 60,
+              //     yellow: 70,
+              //     green: 80
+              //   },
+              //   {
+              //     name: "宜昌市",
+              //     value: 931,
+              //     grey: 50,
+              //     red: 60,
+              //     yellow: 70,
+              //     green: 80
+              //   }
+              // ]
               //animationDurationUpdate: 1000,
               //animationEasingUpdate: 'quinticInOut'
             }
