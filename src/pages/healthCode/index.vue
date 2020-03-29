@@ -409,11 +409,11 @@ export default {
     },
     showDetail(val) {
       // 点击详情
-      this.slideInfo.tripMode = [],
+      this.slideInfo.tripData = [],
       this.slideInfo.cityRankTable.tableData = []
       this.slideInfo.entranceRankTable.tableData = []
 
-      this.slideInfo.tripMode = this.tripModeData
+      this.slideInfo.tripData = this.tripModeData
       this.slideInfo.cityRankTable.tableData = this.cityRankTable.tableData
       this.slideInfo.entranceRankTable.tableData = this.entranceRankTable.tableData
       this.showSwiper = true

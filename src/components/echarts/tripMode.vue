@@ -65,9 +65,6 @@ export default {
       console.log(this.data)
       this.initEcharts()
     },
-    id: function() {
-      this.initEcharts()
-    }
   },
   methods: {
     initEcharts() {
