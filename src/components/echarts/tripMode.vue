@@ -60,7 +60,9 @@ export default {
           }
         })
       }
-      // console.log(this.data)
+      deep: true
+      immediate: true,
+      console.log(this.data)
       this.initEcharts()
     },
     id: function() {
@@ -70,7 +72,7 @@ export default {
   methods: {
     initEcharts() {
       let myChart = this.$echarts.init(document.getElementById(this.id));
-          
+
           var titleArr= [], seriesArr=[];
           let colors=[['#83A1B0', '#424A5F'], ['#FF7A7A', '#D12727'], ['#F1F35B', '#A3A513'], ['#44EE54', '#078C0D']]
           this.data.forEach((item, index) => {
@@ -86,7 +88,7 @@ export default {
                           color: '#80C5FF',
                           textAlign: 'center',
                       },
-                  }        
+                  }
               );
               seriesArr.push(
                   {
@@ -133,7 +135,7 @@ export default {
                                       color: "transparent"
                                   }
                               },
-                              
+
                           },
                           {// 灰色部分
                               value: item.value / item.ratio - item.value,
@@ -147,7 +149,7 @@ export default {
                               },
                               hoverAnimation:false,
                               hoverLink:false,
-                              
+
                               emphasis:{
                                   label: {
                                     show:false
@@ -178,11 +180,11 @@ export default {
                               }
                           },
                       ]
-                  }    
+                  }
               )
           });
-        
-          
+
+
       let option = {
           // backgroundColor: "#fff",
           title:titleArr,
