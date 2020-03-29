@@ -38,10 +38,11 @@ export default {
       this.initEcharts()
     })
     // this.initEcharts()
-    console.log(this.echartsData)
+    // console.log(this.echartsData)
   },
   watch: {
     echartsData: function(newV, oldV) {
+      console.log(newV)
       this.data.forEach(item => {
         if(item.name === '方式一') {
           item.value = newV.checkOneRatio * newV.checkOne
@@ -59,7 +60,7 @@ export default {
       })
       deep: true
       immediate: true,
-      console.log(this.data)
+      // console.log(this.data)
       this.initEcharts()
     },
   },
