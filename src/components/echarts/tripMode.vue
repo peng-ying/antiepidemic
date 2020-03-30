@@ -32,7 +32,17 @@ export default {
       ]
     }
   },
-  props: ['id', 'echartsData'],
+  // props: ['id', 'echartsData'],
+  props: {
+    id: {
+      type: String,
+      default: ''
+    },
+    echartsData: {
+      type: Object,
+      default: {}
+    }
+  },
   created() {
     this.$nextTick(() => {
       this.initEcharts()
@@ -41,28 +51,32 @@ export default {
     // console.log(this.echartsData)
   },
   watch: {
-    echartsData: function(newV, oldV) {
-      console.log(newV)
-      this.data.forEach(item => {
-        if(item.name === '方式一') {
-          item.value = newV.checkOneRatio * newV.checkOne
-          item.ratio = newV.checkOneRatio
-        } else if(item.name === '方式二') {
-          item.value = newV.checkTwoRatio * newV.checkTwo
-          item.ratio = newV.checkTwoRatio
-        } else if(item.name === '方式三') {
-          item.value = newV.checkThreeRatio * newV.checkThree
-          item.ratio = newV.checkThreeRatio
-        } else {
-          item.value = newV.checkFourRatio * newV.checkFour
-          item.ratio = newV.checkFourRatio
-        }
-      })
-      deep: true
-      immediate: true,
-      // console.log(this.data)
-      this.initEcharts()
-    },
+    echartsData: {
+      deep: true,
+      immediate: true,        
+      handler(newV, oldV) {      
+        console.log(newV)
+        // debugger
+        this.data.forEach(item => {
+          if(item.name === '方式一') {
+            item.value = newV.checkOneRatio * newV.checkOne
+            item.ratio = newV.checkOneRatio
+          } else if(item.name === '方式二') {
+            item.value = newV.checkTwoRatio * newV.checkTwo
+            item.ratio = newV.checkTwoRatio
+          } else if(item.name === '方式三') {
+            item.value = newV.checkThreeRatio * newV.checkThree
+            item.ratio = newV.checkThreeRatio
+          } else {
+            item.value = newV.checkFourRatio * newV.checkFour
+            item.ratio = newV.checkFourRatio
+          }
+        })
+
+        console.log(this.data)
+        this.initEcharts()
+      }
+    }
   },
   methods: {
     initEcharts() {

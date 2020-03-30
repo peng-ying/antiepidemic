@@ -174,7 +174,7 @@ import { getData } from '../../api/ncov.js'
 export default {
   data() {
     return {
-      isFullscreen:true,
+      isFullscreen:false,
       leftOneTitle: '湖北省健康码申请与发放情况',
       leftTwoTitle: '人群性别及年龄分布',
       leftThreeTitle: '健康码发布情况',
@@ -369,7 +369,8 @@ export default {
       }
     },
     toggleFullScreen(e){
-        this.isFullscreen=!this.isFullscreen;
+        // this.isFullscreen=!this.isFullscreen;
+        this.isFullScreen = true
         this.FullScreen(document.getElementById("canvasPaintArea"));
     },
     async initData() {
@@ -413,7 +414,8 @@ export default {
       this.slideInfo.cityRankTable.tableData = []
       this.slideInfo.entranceRankTable.tableData = []
 
-      this.slideInfo.tripData = this.tripModeData
+      this.slideInfo.tripData = this.tripModeData;
+      this.$set(this.slideInfo.tripData,'random',Math.random());
       this.slideInfo.cityRankTable.tableData = this.cityRankTable.tableData
       this.slideInfo.entranceRankTable.tableData = this.entranceRankTable.tableData
       this.showSwiper = true

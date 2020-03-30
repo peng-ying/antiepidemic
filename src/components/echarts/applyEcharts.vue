@@ -25,6 +25,7 @@ export default {
         this.apply.push(item.applyTotal)
         this.grant.push(item.grantTotal)
       })
+      this.xAxisData = this.xAxisData.reverse()
       this.initEcharts()
     }
   },
@@ -115,12 +116,12 @@ export default {
             axisLabel: {
                 // inside: false,
                 show:true,
+                interval: 0,
                 textStyle: {
                   fontWeight: 'normal',
                   fontSize: '14',
                   // lineHeight: 22
-                }
-
+                },
             },
             data: this.xAxisData
           },

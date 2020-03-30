@@ -107,12 +107,14 @@ export default {
               var tipHtml = "";
               var dataList = params.data.dataList;
               var str = "";
-              dataList.map(i => {
+              // for(let i in dataList) {
                 tipHtml = `
-                  ${tipHtml}
-                  <span style="fontSize: 15px;"><span style="color: #FE7978"></span>${i.name}: ${i.value}${i.unit}</span><br />
+                  <span style="fontSize: 15px;"><span style="color: #FE7978">红码</span>人数: ${dataList[0].value}人</span><br />
+                  <span style="fontSize: 15px;"><span style="color: #EFF159">黄码</span>人数: ${dataList[1].value}人</span><br />
+                  <span style="fontSize: 15px;"><span style="color: #41EF52">绿码</span>人数: ${dataList[2].value}人</span><br />
+                  <span style="fontSize: 15px;"><span style="color: #AFAFAF">灰码</span>人数: ${dataList[3].value}人</span><br />
                 `;
-              })
+              // }
               str = `
                 <div style="padding:10px 10px 10px 20px;height:auto;fontSize: 15px;width:237px;border-radius:5px;background: #072D4E">
                     <span style="fontSize: 15px;"><span style="color: #80C5FF">城市名称：</span>${params.data.name}</span><br />

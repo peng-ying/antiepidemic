@@ -58,7 +58,8 @@ export default {
   mounted() {
     // 跳转到指定页
    this.swiper.slideTo(this.active, 1000, false)
-   console.log(this.swiperData)
+  //  console.log(this.swiperData)
+
   },
   data() {
     return {
