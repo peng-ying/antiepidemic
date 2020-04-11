@@ -305,6 +305,12 @@ export default {
             }
           ]
         });
+
+        setTimeout(function (){        
+          window.addEventListener('resize', function () {
+              myChart.resize();
+          })
+        }, 50)
     }
   }
 };

@@ -201,6 +201,12 @@ export default {
       }
 
       myChart.setOption(option)
+
+      setTimeout(function (){        
+        window.addEventListener('resize', function () {
+            myChart.resize();
+        })
+      }, 50)
     }
   },
 }

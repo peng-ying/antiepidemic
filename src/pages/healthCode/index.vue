@@ -194,7 +194,7 @@ export default {
       totalData: {},
       mapData: [],
       checkCodeData: [],
-      tripModeData: [],
+      tripModeData: {},
       showInfo: true,
       showSwiper: false,
       slideInfo: {
@@ -251,7 +251,9 @@ export default {
       codeTable: {
         type: 'code',
         styleObject: {
-          height: '115px',
+          maxHeight: '160px',
+          // maxHeight: '120px',
+          // height: "100%",
           overflowY: 'scroll'
         },
         head: [
@@ -270,7 +272,8 @@ export default {
       cityRankTable: {
         type: 'city',
         styleObject: {
-          height: '110px',
+          maxHeight: '165px',
+          // maxHeight: '110px',
           overflowY: 'scroll'
         },
         head: [
@@ -288,7 +291,8 @@ export default {
       entranceRankTable: {
         type: 'entrance',
         styleObject: {
-          height: '110px',
+          maxHeight: '165px',
+          // maxHeight: '110px',
           overflowY: 'scroll'
         },
         head: [
@@ -459,6 +463,7 @@ export default {
     // max-height: 1080px;
     background-image: url(../../assets/imgs/bg.png);
     background-repeat: no-repeat;
+    background-size: 100% 100%;
     background-position: center bottom;
     overflow: hidden;
     .top {
@@ -603,7 +608,7 @@ export default {
           width: 80%;
           height: 100%;
           margin-left: 10%;
-          margin-top: 36px;
+          margin-top: 10%;
         }
         .grid-content {
           // color: #ffffff;
@@ -642,6 +647,7 @@ export default {
         flex: 0.6;
         position: relative;
         .mapEcharts {
+          margin-top: 10%;
           width: 100%;
           height: 100%;
           position: absolute;
@@ -650,6 +656,7 @@ export default {
         .swiper{
           width: 90%;
           height: 100%;
+          margin-top: 10%;
           position: absolute;
           left: 5%;
           z-index: 2;
@@ -691,56 +698,57 @@ export default {
     }
   }
 
-  .table-box {
-    height: 140px;
-    width: 100%;
-    table thead, table tbody tr {
-        display: table;
-        width: 100%;
-        table-layout: fixed; /**表格列的宽度由表格宽度决定，不由内容决定*/
-    }
-    .table {
-      font-family:SourceHanSansCN-Medium;
-      font-size: 14px;
-      border-spacing: 0px;
-      width: 100%;
-      thead th, tbody td {
-        height: 30px;
-        width: 67px;
-      }
-      thead th:first-child, tbody td:first-child {
-        width: 45px;
-      }
-      .table-head {
-        background:linear-gradient(92deg,rgba(0,138,255,0.5) 0%,rgba(0,138,255,0) 100%);
-        th {
-          height: 34px;
-          color: #FFFFFF;
-          opacity:0.7;
-        }
-      }
-      .table-body {
-        width: 100%;
-        height: 110px;
-        text-align: center;
-        display: block;
-        overflow-y: scroll;
-        tr {
-          color: #80C5FF;
-          opacity:0.7;
-        }
-      }
-      .table-body::-webkit-scrollbar {
-        width: 0;
-      }
-      // .table-body::-webkit-scrollbar-thumb {
-      //   width: 0;
-      // }
-      // .table-body::-webkit-scrollbar-track {
-      //   width: 0;
-      // }
-    }
-  }
+  // .table-box {
+  //   // height: 140px;
+  //   max-height: 160px;
+  //   width: 100%;
+  //   table thead, table tbody tr {
+  //       display: table;
+  //       width: 100%;
+  //       table-layout: fixed; /**表格列的宽度由表格宽度决定，不由内容决定*/
+  //   }
+  //   .table {
+  //     font-family:SourceHanSansCN;
+  //     font-size: 14px;
+  //     border-spacing: 0px;
+  //     width: 100%;
+  //     thead th, tbody td {
+  //       height: 30px;
+  //       width: 67px;
+  //     }
+  //     thead th:first-child, tbody td:first-child {
+  //       width: 45px;
+  //     }
+  //     .table-head {
+  //       background:linear-gradient(92deg,rgba(0,138,255,0.5) 0%,rgba(0,138,255,0) 100%);
+  //       th {
+  //         height: 34px;
+  //         color: #FFFFFF;
+  //         opacity:0.7;
+  //       }
+  //     }
+  //     .table-body {
+  //       width: 100%;
+  //       height: 110px;
+  //       text-align: center;
+  //       display: block;
+  //       overflow-y: scroll;
+  //       tr {
+  //         color: #80C5FF;
+  //         opacity:0.7;
+  //       }
+  //     }
+  //     .table-body::-webkit-scrollbar {
+  //       width: 0;
+  //     }
+  //     // .table-body::-webkit-scrollbar-thumb {
+  //     //   width: 0;
+  //     // }
+  //     // .table-body::-webkit-scrollbar-track {
+  //     //   width: 0;
+  //     // }
+  //   }
+  // }
 
 }
 </style>
