@@ -193,7 +193,7 @@ export default {
       totalData: {},
       mapData: [],
       checkCodeData: [],
-      tripModeData: [],
+      tripModeData: {},
       showInfo: true,
       showSwiper: false,
       slideInfo: {
@@ -250,7 +250,7 @@ export default {
       codeTable: {
         type: 'code',
         styleObject: {
-          height: '115px',
+          maxHeight: '175px',
           overflowY: 'scroll'
         },
         head: [
@@ -269,7 +269,7 @@ export default {
       cityRankTable: {
         type: 'city',
         styleObject: {
-          height: '110px',
+          height: '165px',
           overflowY: 'scroll'
         },
         head: [
@@ -287,7 +287,7 @@ export default {
       entranceRankTable: {
         type: 'entrance',
         styleObject: {
-          height: '110px',
+          height: '165px',
           overflowY: 'scroll'
         },
         head: [
@@ -459,6 +459,7 @@ export default {
     // max-height: 1080px;
     background-image: url(../../assets/imgs/bg.png);
     background-repeat: no-repeat;
+    background-size: 100% 100%;
     background-position: center bottom;
     overflow: hidden;
     .top {
@@ -603,7 +604,7 @@ export default {
           width: 80%;
           height: 100%;
           margin-left: 10%;
-          margin-top: 36px;
+          margin-top: 10%;
         }
         .grid-content {
           // color: #ffffff;
@@ -642,6 +643,7 @@ export default {
         flex: 0.6;
         position: relative;
         .mapEcharts {
+          margin-top: 10%;
           width: 100%;
           height: 100%;
           position: absolute;
@@ -650,6 +652,7 @@ export default {
         .swiper{
           width: 90%;
           height: 100%;
+          margin-top: 10%;
           position: absolute;
           left: 5%;
           z-index: 2;

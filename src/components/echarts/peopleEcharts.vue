@@ -257,6 +257,13 @@ export default {
             data: this.femaleValue,
         }]
       })
+
+      
+      setTimeout(function (){        
+        window.addEventListener('resize', function () {
+            myChart.resize();
+        })
+      }, 50)
     }
   }
 }

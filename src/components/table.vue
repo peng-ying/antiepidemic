@@ -74,6 +74,7 @@ export default {
 .table-box {
   height: 100%;
   width: 100%;
+  overflow: hidden;
   table thead, table tbody tr {
       display: table;
       width: 100%;
@@ -104,7 +105,6 @@ export default {
       // height: 110px;
       text-align: center;
       display: block;
-      // overflow-y: scroll;
       tr {
         color: #80C5FF;
         opacity:0.7;

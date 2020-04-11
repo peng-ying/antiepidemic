@@ -112,7 +112,7 @@ export default {
     .close {
       position: absolute;
       top: 60px;
-      right: 0;
+      left: 90%;
       z-index: 2;
       img {
         width: 18px;
