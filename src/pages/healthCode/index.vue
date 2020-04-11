@@ -21,8 +21,8 @@
                   <SubTitle :subTitle="leftTwoTitle"/>
                   <div class="leftTwocontent">
                     <div class="btns">
-                      <div 
-                        v-for="(item, index) in btn" 
+                      <div
+                        v-for="(item, index) in btn"
                         :key="index"
                         @click="peopleChooseType(index)"
                         :class="{active: currentIndex === index}">{{item}}</div>
@@ -72,21 +72,22 @@
                     <el-col :span="8">
                       <div class="grid-content">
                         <p class="sum">申请人数</p>
-                        <p class="num">{{totalData.applyTotal}}<span>人</span></p>
+                        <p class="num">
+                          <span class="effects-small">{{totalData.applyTotal}}</span><span>人</span></p>
                         <p class="increase">昨日新增：{{totalData.applyYesterday}}人</p>
                       </div>
                     </el-col>
                     <el-col :span="8">
                       <div class="grid-content">
                         <p class="sum">发放人数</p>
-                        <p class="num">{{totalData.grantTotal}}<span>人</span></p>
+                        <p class="num"><span class="effects-small">{{totalData.grantTotal}}</span><span>人</span></p>
                         <p class="increase">昨日新增：{{totalData.grantYesterday}}人</p>
                       </div>
                     </el-col>
                     <el-col :span="8">
                       <div class="grid-content">
                         <p class="sum">验码次数</p>
-                        <p class="num">{{totalData.checkTotal}}<span>人</span></p>
+                        <p class="num"><span class="effects-small">{{totalData.checkTotal}}</span><span>人</span></p>
                         <p class="increase">昨日新增：{{totalData.checkYesterday}}人</p>
                       </div>
                     </el-col>
@@ -151,7 +152,7 @@
           </div>
         </div>
 
-        
+
 
       </div>
     </div>
@@ -232,7 +233,7 @@ export default {
             height: '250px',
             overflow: 'hidden'
           },
-          pager: true,  
+          pager: true,
           head: [
             "序号", "卡口名称", "验码次数", "城市名称", "通过人次", "通过车次", "通过率"
           ],
@@ -434,7 +435,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import url('../../assets/css/common.less');
 .container{
   background-color: #EEF1F7;
   padding: 24px 24px 0 24px;
@@ -618,7 +618,7 @@ export default {
           }
           .sum {
             font-size:14px;
-            font-family:SourceHanSansCN;
+            font-family:SourceHanSansCN-Regular;
             font-weight:400;
             color:rgba(255,255,255,1);
             line-height:36px;
@@ -635,7 +635,7 @@ export default {
           }
           .increase {
             font-size:14px;
-            font-family:SourceHanSansCN;
+            font-family:SourceHanSansCN-Regular;
             font-weight:400;
             color:rgba(128,197,255,1);
             line-height: 24px;

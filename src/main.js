@@ -8,7 +8,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 import './assets/index.css'
 import echarts from 'echarts'
 import axios from 'axios'
-
+import './assets/css/common.less'
 Vue.use(ElementUI);
 // Vue.use(axios)
 Vue.prototype.$echarts = echarts

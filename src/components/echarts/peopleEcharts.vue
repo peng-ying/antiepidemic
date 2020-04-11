@@ -1,5 +1,9 @@
 <template>
-  <div :id="id" style="width: 100%;height: 80%;"></div>
+  <div class="peopleimg">
+    <div class="peoplecontent" :id="id" style="width: 100%;height: 80%;"></div>
+    <div class="man"></div>
+    <div class="woman"></div>
+  </div>
 </template>
 
 <script>
@@ -270,5 +274,30 @@ export default {
 </script>
 
 <style lang="less">
-
+.peopleimg {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  .peoplecontent {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+	.man{
+		background: url(../../assets/imgs/男.png)no-repeat;
+		width: 35px;
+		height: 90px;
+		position: absolute;
+		left: 224px;
+		top: 26px;
+	}
+	.woman{
+		background: url(../../assets/imgs/女.png)no-repeat;
+		width: 40px;
+		height: 90px;
+		position: absolute;
+		right: 145px;
+		top: 26px;
+	}
+}
 </style>

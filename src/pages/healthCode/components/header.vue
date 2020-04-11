@@ -1,7 +1,7 @@
 <template>
   <div class="codeheader">
     <div class="center">
-      <span class="effect">湖北省健康码<i>（更新时间：2020年3月12日）</i></span>
+      <span>湖北省健康码<i>（更新时间：2020年3月12日）</i></span>
     </div>
     <!-- <div></div>
     <div></div>
