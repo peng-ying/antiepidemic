@@ -250,7 +250,9 @@ export default {
       codeTable: {
         type: 'code',
         styleObject: {
-          maxHeight: '175px',
+          maxHeight: '160px',
+          // maxHeight: '120px',
+          // height: "100%",
           overflowY: 'scroll'
         },
         head: [
@@ -269,7 +271,8 @@ export default {
       cityRankTable: {
         type: 'city',
         styleObject: {
-          height: '165px',
+          maxHeight: '165px',
+          // maxHeight: '110px',
           overflowY: 'scroll'
         },
         head: [
@@ -287,7 +290,8 @@ export default {
       entranceRankTable: {
         type: 'entrance',
         styleObject: {
-          height: '165px',
+          maxHeight: '165px',
+          // maxHeight: '110px',
           overflowY: 'scroll'
         },
         head: [
@@ -694,56 +698,57 @@ export default {
     }
   }
 
-  .table-box {
-    height: 140px;
-    width: 100%;
-    table thead, table tbody tr {
-        display: table;
-        width: 100%;
-        table-layout: fixed; /**表格列的宽度由表格宽度决定，不由内容决定*/
-    }
-    .table {
-      font-family:SourceHanSansCN;
-      font-size: 14px;
-      border-spacing: 0px;
-      width: 100%;
-      thead th, tbody td {
-        height: 30px;
-        width: 67px;
-      }
-      thead th:first-child, tbody td:first-child {
-        width: 45px;
-      }
-      .table-head {
-        background:linear-gradient(92deg,rgba(0,138,255,0.5) 0%,rgba(0,138,255,0) 100%);
-        th {
-          height: 34px;
-          color: #FFFFFF;
-          opacity:0.7;
-        }
-      }
-      .table-body {
-        width: 100%;
-        height: 110px;
-        text-align: center;
-        display: block;
-        overflow-y: scroll;
-        tr {
-          color: #80C5FF;
-          opacity:0.7;
-        }
-      }
-      .table-body::-webkit-scrollbar {
-        width: 0;
-      }
-      // .table-body::-webkit-scrollbar-thumb {
-      //   width: 0;
-      // }
-      // .table-body::-webkit-scrollbar-track {
-      //   width: 0;
-      // }
-    }
-  }
+  // .table-box {
+  //   // height: 140px;
+  //   max-height: 160px;
+  //   width: 100%;
+  //   table thead, table tbody tr {
+  //       display: table;
+  //       width: 100%;
+  //       table-layout: fixed; /**表格列的宽度由表格宽度决定，不由内容决定*/
+  //   }
+  //   .table {
+  //     font-family:SourceHanSansCN;
+  //     font-size: 14px;
+  //     border-spacing: 0px;
+  //     width: 100%;
+  //     thead th, tbody td {
+  //       height: 30px;
+  //       width: 67px;
+  //     }
+  //     thead th:first-child, tbody td:first-child {
+  //       width: 45px;
+  //     }
+  //     .table-head {
+  //       background:linear-gradient(92deg,rgba(0,138,255,0.5) 0%,rgba(0,138,255,0) 100%);
+  //       th {
+  //         height: 34px;
+  //         color: #FFFFFF;
+  //         opacity:0.7;
+  //       }
+  //     }
+  //     .table-body {
+  //       width: 100%;
+  //       height: 110px;
+  //       text-align: center;
+  //       display: block;
+  //       overflow-y: scroll;
+  //       tr {
+  //         color: #80C5FF;
+  //         opacity:0.7;
+  //       }
+  //     }
+  //     .table-body::-webkit-scrollbar {
+  //       width: 0;
+  //     }
+  //     // .table-body::-webkit-scrollbar-thumb {
+  //     //   width: 0;
+  //     // }
+  //     // .table-body::-webkit-scrollbar-track {
+  //     //   width: 0;
+  //     // }
+  //   }
+  // }
 
 }
 </style>

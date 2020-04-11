@@ -72,6 +72,7 @@ export default {
 
 <style lang="less" scoped>
 .table-box {
+  // max-height: 165px;
   height: 100%;
   width: 100%;
   overflow: hidden;
@@ -87,7 +88,7 @@ export default {
     width: 100%;
     thead th, tbody td {
       height: 30px;
-      width: 67px;
+      width: 75px;
     }
     thead th:first-child, tbody td:first-child {
       width: 45px;
