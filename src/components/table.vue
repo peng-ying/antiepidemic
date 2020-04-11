@@ -80,7 +80,7 @@ export default {
       table-layout: fixed; /**表格列的宽度由表格宽度决定，不由内容决定*/
   }
   .table {
-    font-family:SourceHanSansCN;
+    font-family:SourceHanSansCN-Medium;
     font-size: 14px;
     border-spacing: 0px;
     width: 100%;
@@ -133,11 +133,11 @@ export default {
     margin-top: 35px;
   }
   .pager-box .el-pagination.is-background .el-pager li:not(.disabled).active {
-    background-color: rgba(24,104,174,1);; 
+    background-color: rgba(24,104,174,1);;
     color: #fff;
   }
   .pager-box .el-pagination.is-background .el-pager li:not(.disabled){
-    background-color: transparent; 
+    background-color: transparent;
     color:rgba(129,135,145,1);
     border:1px solid rgba(24,104,174,1);
     font-weight: 200;
