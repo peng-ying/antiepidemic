@@ -1,6 +1,6 @@
 <template>
   <div class="table-box">
-    <table class="table">
+    <!-- <table class="table">
       <thead class="table-head">
         <th   v-for="(item, index) in tableInfo.head" :key="index">{{item}}</th>
       </thead>
@@ -37,8 +37,45 @@
           <td>{{item.bayonetPassRatio}}%</td>
         </tr>
       </tbody>
-    </table>
-
+    </table> -->
+    <div class="table">
+      <div class="tablehead flex-cell flex-row">
+        <div class="flex-cell flex-row" v-for="(item, index) in tableInfo.head" :key="index">{{item}}</div>
+      </div>
+      <div class="tablecontent" v-if="tableInfo.type === 'city'">
+        <div class="flex-cell flex-row" v-for="(item, index) in tableInfo.tableData" :key="index">
+          <div class="flex-cell flex-row">{{index + 1}}</div>
+          <div class="city flex-cell flex-row"  :title="item.city">{{item.city}}</div>
+          <div class="flex-cell flex-row">{{item.checkTotal}}</div>
+          <div class="flex-cell flex-row">{{item.bayonetTotal}}</div>
+          <div class="flex-cell flex-row">{{item.bayonetPerson}}</div>
+          <div class="flex-cell flex-row">{{item.bayonetCar}}</div>
+          <div class="flex-cell flex-row">{{item.bayonetPassRatio}}%</div>
+        </div>
+      </div>
+      <div class="tablecontent" v-else-if="tableInfo.type === 'code'">
+        <div class="flex-cell flex-row" v-for="(item, index) in tableInfo.tableData" :key="index">
+          <div class="flex-cell flex-row">{{index + 1}}</div>
+          <div class="city flex-cell flex-row"  :title="item.city">{{item.city}}</div>
+          <div class="flex-cell flex-row">{{item.applyTotal}}</div>
+          <div class="flex-cell flex-row">{{item.redTotal}}</div>
+          <div class="flex-cell flex-row">{{item.yellowTotal}}</div>
+          <div class="flex-cell flex-row">{{item.greenTotal}}</div>
+          <div class="flex-cell flex-row">{{item.grantRatio}}%</div>
+        </div>
+      </div>
+      <div class="tablecontent" v-else-if="tableInfo.type === 'entrance'">
+          <div class="flex-cell flex-row">{{index + 1}}</div>
+          <div class="flex-cell flex-row">{{item.bayonetName}}</div>
+          <div class="flex-cell flex-row">{{item.checkTotal}}</div>
+          <div class="city flex-cell flex-row"  :title="item.city">{{item.city}}</div>
+          <div class="flex-cell flex-row">{{item.applyTotal}}</div>
+          <div class="flex-cell flex-row">{{item.redTotal}}</div>
+          <div class="flex-cell flex-row">{{item.bayonetPerson}}</div>
+          <div class="flex-cell flex-row">{{item.bayonetCar}}</div>
+          <div class="flex-cell flex-row">{{item.bayonetPassRatio}}%</div>
+      </div>
+    </div>
     <div class="pager-box" v-if="tableInfo.pager">
       <el-pagination
         background
@@ -125,6 +162,37 @@ export default {
     // .table-body::-webkit-scrollbar-track {
     //   width: 0;
     // }
+  }
+}
+.table-box {
+  .table {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    .tablehead {
+      background:linear-gradient(92deg,rgba(0,138,255,0.5) 0%,rgba(0,138,255,0) 100%);
+
+    }
+    .tablecontent {
+
+    }
+    .flex-row{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+    .flex-column{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: stretch;
+    }
+
+    .flex-cell{
+      flex: 1;
+    }
   }
 }
 </style>
