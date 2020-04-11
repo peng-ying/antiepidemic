@@ -172,10 +172,14 @@ export default {
     align-items: stretch;
     .tablehead {
       background:linear-gradient(92deg,rgba(0,138,255,0.5) 0%,rgba(0,138,255,0) 100%);
-
+      color: #FFFFFF;
+      opacity:0.7;
+      font-family: SourceHanSansCN-Medium;
     }
     .tablecontent {
-
+      font-family: SourceHanSansCN-Medium;
+      color:rgba(128,197,255,1);
+      opacity:0.65;
     }
     .flex-row{
       display: flex;

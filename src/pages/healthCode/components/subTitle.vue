@@ -43,6 +43,7 @@ export default {
     text-align: center;
     margin-left: 10px;
     cursor: pointer;
+    font-family: SourceHanSansCN-Regular;
   }
   .subtitlebg {
     height: 10px;
