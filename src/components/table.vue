@@ -136,9 +136,9 @@ export default {
 <style lang="less" scoped>
 .table-box {
   // max-height: 165px;
-  height: 100%;
+  // height: 100%;
   width: 100%;
-  overflow: hidden;
+  // overflow: hidden;
   table thead, table tbody tr {
       display: table;
       width: 100%;
@@ -196,6 +196,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: stretch;
+    height: 160px;
     .tablehead {
       background:linear-gradient(92deg,rgba(0,138,255,0.5) 0%,rgba(0,138,255,0) 100%);
       color: #FFFFFF;
@@ -224,7 +225,12 @@ export default {
 
     .flex-cell{
       flex: 1;
+    }
+
+    .city {
+      white-space: nowrap;
       overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 }
