@@ -60,7 +60,7 @@
                         </tbody>
                       </table>
                     </div> -->
-                    <testTable  :tableInfo="codeTable"/>
+                    <testTable class="leftThree-table" :tableInfo="codeTable"/>
                   </div>
                 </div>
               </div>
@@ -566,9 +566,15 @@ export default {
         .leftThreecontent {
           background:linear-gradient(0deg,rgba(0,138,255,.1) 0%,rgba(0,138,255,0) 100%);
           height: calc(100% - 28px);
+          flex: 1;
+          display: flex;
+          flex-direction: column;
           .leftThree-echart {
-            height: 35%;
+            flex: 0.364;
             margin: 10px 0 10px 0;
+          }
+          .leftThree-table {
+            flex: 0636;
           }
         }
         .rightOnecontent {
