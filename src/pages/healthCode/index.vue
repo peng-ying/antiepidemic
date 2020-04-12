@@ -257,6 +257,9 @@ export default {
           // height: "100%",
           overflowY: 'scroll'
         },
+        styleContent: {
+          maxHeight: '204px',
+        },
         head: [
           "序号", "城市名称", "申请人数", "红码", "黄码", "绿码", "通过率"
         ],
@@ -277,6 +280,9 @@ export default {
           // maxHeight: '110px',
           overflowY: 'scroll'
         },
+        styleContent: {
+          maxHeight: '170px',
+        },
         head: [
           "序号", "城市名称", "验码次数", "卡口数量", "通过人次", "通过车次", "通过率"
         ],
@@ -295,6 +301,9 @@ export default {
           maxHeight: '165px',
           // maxHeight: '110px',
           overflowY: 'scroll'
+        },
+        styleContent: {
+          maxHeight: '170px',
         },
         head: [
           "序号", "卡口名称", "验码次数", "城市名称", "通过人次", "通过车次", "通过率"
@@ -380,7 +389,7 @@ export default {
         this.FullScreen(document.getElementById("canvasPaintArea"));
     },
     async initData() {
-      this.codeTable.tableData = []
+      this.codeTable.tableData = this.codeTable.tableData;
       this.cityRankTable.tableData = []
       this.entranceRankTable.tableData = []
       let params = {
@@ -566,15 +575,12 @@ export default {
         .leftThreecontent {
           background:linear-gradient(0deg,rgba(0,138,255,.1) 0%,rgba(0,138,255,0) 100%);
           height: calc(100% - 28px);
-          flex: 1;
-          display: flex;
-          flex-direction: column;
           .leftThree-echart {
-            flex: 0.364;
+            height: 35%;
             margin: 10px 0 10px 0;
           }
           .leftThree-table {
-            flex: 0636;
+            height: 65%;
           }
         }
         .rightOnecontent {
