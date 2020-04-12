@@ -43,37 +43,45 @@
         <div class="flex-cell flex-row" v-for="(item, index) in tableInfo.head" :key="index">{{item}}</div>
       </div>
       <div class="tablecontent" v-if="tableInfo.type === 'city'">
-        <div class="flex-cell flex-row" v-for="(item, index) in tableInfo.tableData" :key="index">
-          <div class="flex-cell flex-row">{{index + 1}}</div>
-          <div class="city flex-cell flex-row"  :title="item.city">{{item.city}}</div>
-          <div class="flex-cell flex-row">{{item.checkTotal}}</div>
-          <div class="flex-cell flex-row">{{item.bayonetTotal}}</div>
-          <div class="flex-cell flex-row">{{item.bayonetPerson}}</div>
-          <div class="flex-cell flex-row">{{item.bayonetCar}}</div>
-          <div class="flex-cell flex-row">{{item.bayonetPassRatio}}%</div>
-        </div>
+        <vue-seamless-scroll :data="tableInfo.tableData" :class-option="classOption">
+          <div class="flex-cell flex-row" v-for="(item, index) in tableInfo.tableData" :key="index">
+            <div class="flex-cell flex-row">{{index + 1}}</div>
+            <div class="city flex-cell flex-row"  :title="item.city">{{item.city}}</div>
+            <div class="flex-cell flex-row">{{item.checkTotal}}</div>
+            <div class="flex-cell flex-row">{{item.bayonetTotal}}</div>
+            <div class="flex-cell flex-row">{{item.bayonetPerson}}</div>
+            <div class="flex-cell flex-row">{{item.bayonetCar}}</div>
+            <div class="flex-cell flex-row">{{item.bayonetPassRatio}}%</div>
+          </div>
+        </vue-seamless-scroll>
       </div>
       <div class="tablecontent" v-else-if="tableInfo.type === 'code'">
-        <div class="flex-cell flex-row" v-for="(item, index) in tableInfo.tableData" :key="index">
-          <div class="flex-cell flex-row">{{index + 1}}</div>
-          <div class="city flex-cell flex-row"  :title="item.city">{{item.city}}</div>
-          <div class="flex-cell flex-row">{{item.applyTotal}}</div>
-          <div class="flex-cell flex-row">{{item.redTotal}}</div>
-          <div class="flex-cell flex-row">{{item.yellowTotal}}</div>
-          <div class="flex-cell flex-row">{{item.greenTotal}}</div>
-          <div class="flex-cell flex-row">{{item.grantRatio}}%</div>
-        </div>
+        <vue-seamless-scroll :data="tableInfo.tableData" :class-option="classOption">
+          <div class="flex-cell flex-row" v-for="(item, index) in tableInfo.tableData" :key="index">
+            <div class="flex-cell flex-row">{{index + 1}}</div>
+            <div class="city flex-cell flex-row"  :title="item.city">{{item.city}}</div>
+            <div class="flex-cell flex-row">{{item.applyTotal}}</div>
+            <div class="flex-cell flex-row">{{item.redTotal}}</div>
+            <div class="flex-cell flex-row">{{item.yellowTotal}}</div>
+            <div class="flex-cell flex-row">{{item.greenTotal}}</div>
+            <div class="flex-cell flex-row">{{item.grantRatio}}%</div>
+          </div>
+        </vue-seamless-scroll>
       </div>
       <div class="tablecontent" v-else-if="tableInfo.type === 'entrance'">
-          <div class="flex-cell flex-row">{{index + 1}}</div>
-          <div class="flex-cell flex-row">{{item.bayonetName}}</div>
-          <div class="flex-cell flex-row">{{item.checkTotal}}</div>
-          <div class="city flex-cell flex-row"  :title="item.city">{{item.city}}</div>
-          <div class="flex-cell flex-row">{{item.applyTotal}}</div>
-          <div class="flex-cell flex-row">{{item.redTotal}}</div>
-          <div class="flex-cell flex-row">{{item.bayonetPerson}}</div>
-          <div class="flex-cell flex-row">{{item.bayonetCar}}</div>
-          <div class="flex-cell flex-row">{{item.bayonetPassRatio}}%</div>
+        <vue-seamless-scroll :data="tableInfo.tableData" :class-option="classOption">
+          <div class="flex-cell flex-row" v-for="(item, index) in tableInfo.tableData" :key="index">
+            <div class="flex-cell flex-row">{{index + 1}}</div>
+            <div class="flex-cell flex-row">{{item.bayonetName}}</div>
+            <div class="flex-cell flex-row">{{item.checkTotal}}</div>
+            <div class="city flex-cell flex-row"  :title="item.city">{{item.city}}</div>
+            <div class="flex-cell flex-row">{{item.applyTotal}}</div>
+            <div class="flex-cell flex-row">{{item.redTotal}}</div>
+            <div class="flex-cell flex-row">{{item.bayonetPerson}}</div>
+            <div class="flex-cell flex-row">{{item.bayonetCar}}</div>
+            <div class="flex-cell flex-row">{{item.bayonetPassRatio}}%</div>
+          </div>
+        </vue-seamless-scroll>
       </div>
     </div>
     <div class="pager-box" v-if="tableInfo.pager">
@@ -90,6 +98,7 @@
 </template>
 
 <script>
+import vueSeamlessScroll from "vue-seamless-scroll";
 export default {
   data() {
     return {
@@ -99,6 +108,18 @@ export default {
     }
   },
   props: ['tableInfo'],
+  components: {
+    vueSeamlessScroll
+  },
+  computed: {
+    classOption: function() {
+      return {
+        step: 0.5,
+        limitMoveNum: 5,
+        hoverStop: false
+      };
+    }
+  },
   methods: {
     currentChange() {
 
