@@ -276,6 +276,7 @@ export default {
 <style lang="less">
 .peopleimg {
   width: 100%;
+  // height: calc(100% - 50px);
   height: 100%;
   position: relative;
   .peoplecontent {

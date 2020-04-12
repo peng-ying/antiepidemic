@@ -65,15 +65,17 @@
         </div>
       </div>
       <div class="tablecontent" v-else-if="tableInfo.type === 'entrance'">
+        <div class="flex-cell flex-row" v-for="(item, index) in tableInfo.tableData" :key="index">
           <div class="flex-cell flex-row">{{index + 1}}</div>
           <div class="flex-cell flex-row">{{item.bayonetName}}</div>
           <div class="flex-cell flex-row">{{item.checkTotal}}</div>
           <div class="city flex-cell flex-row"  :title="item.city">{{item.city}}</div>
-          <div class="flex-cell flex-row">{{item.applyTotal}}</div>
-          <div class="flex-cell flex-row">{{item.redTotal}}</div>
+          <!-- <div class="flex-cell flex-row">{{item.applyTotal}}</div> -->
+          <!-- <div class="flex-cell flex-row">{{item.redTotal}}</div> -->
           <div class="flex-cell flex-row">{{item.bayonetPerson}}</div>
           <div class="flex-cell flex-row">{{item.bayonetCar}}</div>
           <div class="flex-cell flex-row">{{item.bayonetPassRatio}}%</div>
+        </div>
       </div>
     </div>
     <div class="pager-box" v-if="tableInfo.pager">
@@ -170,6 +172,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: stretch;
+    height: 160px;
     .tablehead {
       background:linear-gradient(92deg,rgba(0,138,255,0.5) 0%,rgba(0,138,255,0) 100%);
       color: #FFFFFF;
@@ -180,6 +183,8 @@ export default {
       font-family: SourceHanSansCN-Medium;
       color:rgba(128,197,255,1);
       opacity:0.65;
+      // height: 120px;
+      overflow: hidden;
     }
     .flex-row{
       display: flex;
@@ -196,6 +201,12 @@ export default {
 
     .flex-cell{
       flex: 1;
+    }
+
+    .city {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 }

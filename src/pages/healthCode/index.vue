@@ -6,7 +6,7 @@
         <el-button type="primary" @click="toggleFullScreen($event)">大屏展示</el-button>
       </div>
       <div class="content" id="canvasPaintArea">
-        <Header />
+        <Header :time="this.nowTime" />
         <div class="flex-col">
           <div class="flex-row">
             <div class="flex-cell flex-cell-2 flex-left">
@@ -175,6 +175,7 @@ import { getData } from '../../api/ncov.js'
 export default {
   data() {
     return {
+      nowTime: '',
       isFullscreen:false,
       leftOneTitle: '湖北省健康码申请与发放情况',
       leftTwoTitle: '人群性别及年龄分布',
@@ -387,8 +388,14 @@ export default {
         pageSize: 10
       }
       let res = await getData(params)
-      let {success, result} = res
+      let {success, result, timestamp} = res
       if(success) {
+        // 处理时间
+        let year = (new Date(1586689364900)).getFullYear()
+        let month = (new Date(1586689364900)).getMonth()
+        let day = (new Date(1586689364900)).getDate()
+        this.nowTime = `${year}年${month}月${day}日`
+
         this.applyData = result.leftOne
         this.peopleData = result.leftTwo
         // 默认显示申请人数
