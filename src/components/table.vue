@@ -75,8 +75,8 @@
             <div class="flex-cell flex-row">{{item.bayonetName}}</div>
             <div class="flex-cell flex-row">{{item.checkTotal}}</div>
             <div class="city flex-cell flex-row"  :title="item.city">{{item.city}}</div>
-            <div class="flex-cell flex-row">{{item.applyTotal}}</div>
-            <div class="flex-cell flex-row">{{item.redTotal}}</div>
+            <!-- <div class="flex-cell flex-row">{{item.applyTotal}}</div> -->
+            <!-- <div class="flex-cell flex-row">{{item.redTotal}}</div> -->
             <div class="flex-cell flex-row">{{item.bayonetPerson}}</div>
             <div class="flex-cell flex-row">{{item.bayonetCar}}</div>
             <div class="flex-cell flex-row">{{item.bayonetPassRatio}}%</div>
@@ -196,7 +196,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: stretch;
-    height: 160px;
+    height: 220px;
     .tablehead {
       background:linear-gradient(92deg,rgba(0,138,255,0.5) 0%,rgba(0,138,255,0) 100%);
       color: #FFFFFF;

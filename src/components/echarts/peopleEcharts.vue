@@ -282,23 +282,25 @@ export default {
   .peoplecontent {
     width: 100%;
     height: 100%;
-    position: absolute;
+    // position: absolute;
   }
 	.man{
 		background: url(../../assets/imgs/男.png)no-repeat;
-		width: 35px;
-		height: 90px;
+		min-width: 35px;
+		min-height: 90px;
 		position: absolute;
-		left: 224px;
-		top: 26px;
+    // left: 224px;
+    left: 40%;
+		top: 20%;
 	}
 	.woman{
 		background: url(../../assets/imgs/女.png)no-repeat;
-		width: 40px;
-		height: 90px;
+		min-width: 40px;
+		min-height: 90px;
 		position: absolute;
-		right: 145px;
-		top: 26px;
+    // right: 145px;
+    left: 60%;
+		top: 20%;
 	}
 }
 </style>
