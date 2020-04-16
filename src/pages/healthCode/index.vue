@@ -258,7 +258,7 @@ export default {
           overflowY: 'scroll'
         },
         styleContent: {
-          maxHeight: '204px',
+          height: '120px',
         },
         head: [
           "序号", "城市名称", "申请人数", "红码", "黄码", "绿码", "通过率"
@@ -281,7 +281,7 @@ export default {
           overflowY: 'scroll'
         },
         styleContent: {
-          maxHeight: '170px',
+          maxHeight: '165px',
         },
         head: [
           "序号", "城市名称", "验码次数", "卡口数量", "通过人次", "通过车次", "通过率"
@@ -303,7 +303,7 @@ export default {
           overflowY: 'scroll'
         },
         styleContent: {
-          maxHeight: '170px',
+          maxHeight: '165px',
         },
         head: [
           "序号", "卡口名称", "验码次数", "城市名称", "通过人次", "通过车次", "通过率"
