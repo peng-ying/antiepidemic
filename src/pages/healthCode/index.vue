@@ -303,7 +303,7 @@ export default {
           overflowY: 'scroll'
         },
         styleContent: {
-          maxHeight: '13vh',
+          maxHeight: '12.5vh',
         },
         head: [
           "序号", "卡口名称", "验码次数", "城市名称", "通过人次", "通过车次", "通过率"
@@ -643,13 +643,13 @@ export default {
             line-height:36px;
           }
           .num {
-            font-size:32px;
-            font-family:DINNextW1G;
+            font-size:14px;
+            font-family:DINNextW1G-BoldItalic;
             font-weight:normal;
             color:rgba(255,255,255,1);
             line-height:48px;
-            span {
-              font-size: 14px;
+            span:first-child {
+              font-size: 32px;
             }
           }
           .increase {

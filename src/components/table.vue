@@ -44,7 +44,7 @@
       </div>
       <div class="tablecontent"  :style="tableInfo.styleContent" v-if="tableInfo.type === 'city'">
         <vue-seamless-scroll :data="tableInfo.tableData" :class-option="classOption">
-          <div class="flex-cell flex-row" v-for="(item, index) in tableInfo.tableData" :key="index">
+          <div class="flex-cell flex-row index" v-for="(item, index) in tableInfo.tableData" :key="index">
             <div class="flex-cell flex-row">{{index + 1}}</div>
             <div class="city flex-cell flex-row"  :title="item.city">{{item.city}}</div>
             <div class="flex-cell flex-row">{{item.checkTotal}}</div>
@@ -57,7 +57,7 @@
       </div>
       <div class="tablecontent" :style="tableInfo.styleContent" v-else-if="tableInfo.type === 'code'">
         <vue-seamless-scroll :data="tableInfo.tableData" :class-option="classOption">
-          <div class="flex-cell flex-row" v-for="(item, index) in tableInfo.tableData" :key="index">
+          <div class="flex-cell flex-row index" v-for="(item, index) in tableInfo.tableData" :key="index">
             <div class="flex-cell flex-row">{{index + 1}}</div>
             <div class="city flex-cell flex-row"  :title="item.city">{{item.city}}</div>
             <div class="flex-cell flex-row">{{item.applyTotal}}</div>
@@ -70,7 +70,7 @@
       </div>
       <div class="tablecontent" :style="tableInfo.styleContent" v-else-if="tableInfo.type === 'entrance'">
         <vue-seamless-scroll :data="tableInfo.tableData" :class-option="classOption">
-          <div class="flex-cell flex-row" v-for="(item, index) in tableInfo.tableData" :key="index">
+          <div class="flex-cell flex-row index" v-for="(item, index) in tableInfo.tableData" :key="index">
             <div class="flex-cell flex-row">{{index + 1}}</div>
             <div class="flex-cell flex-row">{{item.bayonetName}}</div>
             <div class="flex-cell flex-row">{{item.checkTotal}}</div>
@@ -196,7 +196,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: stretch;
-    height: 220px;
+    // height: 220px;
     .tablehead {
       background:linear-gradient(92deg,rgba(0,138,255,0.5) 0%,rgba(0,138,255,0) 100%);
       color: #FFFFFF;
@@ -213,18 +213,23 @@ export default {
     .flex-row{
       display: flex;
       flex-direction: row;
-      justify-content: center;
+      justify-content: space-around;
       align-items: center;
     }
     .flex-column{
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: space-around;
       align-items: stretch;
     }
 
     .flex-cell{
-      flex: 1;
+      // flex: 1;
+      // flex-shrink: 0;
+    }
+
+    .index {
+      // flex: 0 0 50px !important;
     }
 
     .city {
