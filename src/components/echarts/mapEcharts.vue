@@ -118,11 +118,10 @@ export default {
               str = `
                 <div style="padding:10px 10px 10px 20px;height:auto;fontSize: 15px;width:237px;border-radius:5px;background: #072D4E">
                     <span style="fontSize: 15px;"><span style="color: #80C5FF">城市名称：</span>${params.data.name}</span><br />
-                    <span style="fontSize: 15px;"><span style="color: #80C5FF">申请人数 :</span> ${params.data.value}</span><br />
                     ${tipHtml}
                 </div>
                 `
-              
+              // <span style="fontSize: 15px;"><span style="color: #80C5FF">申请人数 :</span> ${params.data.value}</span><br />
               return str;
             }
           },

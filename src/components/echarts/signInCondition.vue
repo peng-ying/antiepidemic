@@ -52,7 +52,7 @@ export default {
                 // console.log(params)
                 return (
                     `
-                    日期：${params[0].name}<br />${params[0].seriesName}: ${params[0].value}<br />${params[1].seriesName}: ${params[1].value}
+                    日期：${params[0].name}<br />${params[0].seriesName}: ${params[0].value}<br />
                     `
                 )
             },
@@ -66,7 +66,7 @@ export default {
           legend: {
               type: "scroll",
               // right: '5%',
-              data:['验码次数','通过率'],
+              data:['验码次数'],
               itemWidth:18,
               itemHeight:12,
               textStyle: {
@@ -185,24 +185,25 @@ export default {
                       color: '#1AACFA'
                   }
               },
-              {
-                  symbolSize: 6,
-                  name: '通过率',
-                  type: "line",
-                  yAxisIndex: 1,
-                  data: this.passRatio ,
-                  symbol: 'circle',
-                  itemStyle: {
-                      normal: {
-                          // borderWidth: 10,
-                          color: '#90D887'
-                      }
-                  },
-                  label:{
-                      show: true,
-                      color: '#77DD5D'
-                  }
-              }], 
+              // {
+              //     symbolSize: 6,
+              //     name: '通过率',
+              //     type: "line",
+              //     yAxisIndex: 1,
+              //     data: this.passRatio ,
+              //     symbol: 'circle',
+              //     itemStyle: {
+              //         normal: {
+              //             // borderWidth: 10,
+              //             color: '#90D887'
+              //         }
+              //     },
+              //     label:{
+              //         show: true,
+              //         color: '#77DD5D'
+              //     }
+              // }
+            ], 
         };
 
         myChart.setOption(option)

@@ -1,6 +1,6 @@
 <template>
   <div class="peopleimg">
-    <div class="peoplecontent" :id="id" style="width: 100%;height: 80%;"></div>
+    <div class="peoplecontent" :id="id" style="width: 100%;height: 100%;"></div>
     <div class="man"></div>
     <div class="woman"></div>
   </div>
@@ -68,7 +68,7 @@ export default {
             trigger: 'axis',
             axisPointer : {            // 坐标轴指示器，坐标轴触发有效
                 type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-            }
+            },
         },
         grid: [{
             show: false,
@@ -162,7 +162,7 @@ export default {
             nameLocation: 'start',
             nameTextStyle: {
               color: '#ffffff',
-              padding: [0,400,0,0]
+              padding: [0,350,0,0]
             },
             axisLine: {
                 show: true,
@@ -201,7 +201,7 @@ export default {
             nameLocation: 'start',
             nameTextStyle: {
               color: '#ffffff',
-              padding: [0,0,0,350]
+              padding: [0,0,0,300]
             },
             axisLine: {
                 show: false
@@ -211,9 +211,22 @@ export default {
             },
             axisLabel: {
                 show: true,
-                color:'#80C5FF'
+                color:'#80C5FF',
+                formatter: (value,index) => {
+                  // console.log(value,index)
+                  let v = this.percent.map((item, i) => {
+                    if(i === index) {
+                      return item
+                    } else {
+                      return ''
+                    }
+                  })
+                  return v.filter(item => {
+                    return item != ''
+                  })
+                }
             },
-            data: this.percent
+            data: this.myData
         }, ],
         series: [{
             name: '男',

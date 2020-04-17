@@ -9,26 +9,27 @@ export default {
     return {
       data: [
         {
-            name: '方式一',
+            name: '支付宝',
             value: 0,
             ratio: 0,
             color: ['#83A1B0', '#424A5F']
         },{
-            name: '方式二',
+            name: '微信',
             value: 0,
             ratio: 0,
             color: ['#FF7A7A', '#D12727']
         },{
-            name: '方式三',
+            name: '鄂汇办',
             value: 0,
             ratio: 0,
             color: ['#F1F35B', '#A3A513']
-        },{
-            name: '方式四',
-            value: 0,
-            ratio: 0,
-            color: ['#44EE54', '#078C0D']
-        }
+        },
+        // {
+        //     name: '方式四',
+        //     value: 0,
+        //     ratio: 0,
+        //     color: ['#44EE54', '#078C0D']
+        // }
       ]
     }
   },
@@ -58,18 +59,18 @@ export default {
         console.log(newV)
         // debugger
         this.data.forEach(item => {
-          if(item.name === '方式一') {
+          if(item.name === '支付宝') {
             item.value = newV.checkOneRatio * newV.checkOne
             item.ratio = newV.checkOneRatio
-          } else if(item.name === '方式二') {
+          } else if(item.name === '微信') {
             item.value = newV.checkTwoRatio * newV.checkTwo
             item.ratio = newV.checkTwoRatio
-          } else if(item.name === '方式三') {
+          } else if(item.name === '鄂汇办') {
             item.value = newV.checkThreeRatio * newV.checkThree
             item.ratio = newV.checkThreeRatio
           } else {
-            item.value = newV.checkFourRatio * newV.checkFour
-            item.ratio = newV.checkFourRatio
+            // item.value = newV.checkFourRatio * newV.checkFour
+            // item.ratio = newV.checkFourRatio
           }
         })
 
@@ -88,7 +89,7 @@ export default {
               titleArr.push(
                   {
                       text:item.name,
-                      left: index * 25 + 11 +'%',
+                      left: index * 35 + 14 +'%',
                       top: '80%',
                       textAlign: 'center',
                       textStyle: {
@@ -132,7 +133,7 @@ export default {
                           }
                       },
                       hoverOffset: 8,
-                      center: [index * 25 + 12 +'%', '55%'],
+                      center: [index * 35 + 15 +'%', '55%'],
                       data: [
                           {// 空白部分
                               value: 30,
