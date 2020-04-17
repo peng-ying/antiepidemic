@@ -286,7 +286,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .peopleimg {
   width: 100%;
   // height: calc(100% - 50px);
