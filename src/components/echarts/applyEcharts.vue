@@ -53,14 +53,14 @@ export default {
             // console.log(params)
             return (
               `
-              日期：${params[0].name}<br />${params[0].seriesName}: ${params[0].value}<br />${params[1].seriesName}: ${params[1].value}
+              日期：${params[0].name}<br />${params[0].seriesName}: ${params[0].value}<br />
               `
             )
           },
         },
         grid: {
           left: '10%',
-          top: '25%',
+          top: '30%',
           bottom: '15%',
           right: '5%',
         },

@@ -71,24 +71,24 @@
                   <el-row>
                     <el-col :span="8">
                       <div class="grid-content">
-                        <p class="sum">申请人数</p>
+                        <p class="sum">发码数</p>
+                        <p class="num"><span class="effects-small">{{totalData.grantTotal}}</span><span>个</span></p>
+                        <p class="increase">昨日新增：{{totalData.grantYesterday}}个</p>
+                      </div>
+                    </el-col>
+                    <el-col :span="8">
+                      <div class="grid-content">
+                        <p class="sum">扫码数</p>
+                        <p class="num"><span class="effects-small">{{totalData.checkTotal}}</span><span>个</span></p>
+                        <p class="increase">昨日新增：{{totalData.checkYesterday}}个</p>
+                      </div>
+                    </el-col>
+                    <el-col :span="8">
+                      <div class="grid-content">
+                        <p class="sum">转码数</p>
                         <p class="num">
-                          <span class="effects-small">{{totalData.applyTotal}}</span><span>人</span></p>
-                        <p class="increase">昨日新增：{{totalData.applyYesterday}}人</p>
-                      </div>
-                    </el-col>
-                    <el-col :span="8">
-                      <div class="grid-content">
-                        <p class="sum">发放人数</p>
-                        <p class="num"><span class="effects-small">{{totalData.grantTotal}}</span><span>人</span></p>
-                        <p class="increase">昨日新增：{{totalData.grantYesterday}}人</p>
-                      </div>
-                    </el-col>
-                    <el-col :span="8">
-                      <div class="grid-content">
-                        <p class="sum">验码次数</p>
-                        <p class="num"><span class="effects-small">{{totalData.checkTotal}}</span><span>人</span></p>
-                        <p class="increase">昨日新增：{{totalData.checkYesterday}}人</p>
+                          <span class="effects-small">{{totalData.applyTotal}}</span><span>个</span></p>
+                        <p class="increase">昨日新增：{{totalData.applyYesterday}}个</p>
                       </div>
                     </el-col>
                   </el-row>
@@ -181,9 +181,9 @@ export default {
       leftTwoTitle: '人群性别及年龄分布',
       leftThreeTitle: '健康码发布情况',
       rightOneTitle: '湖北省健康码验码情况',
-      rightTwoTitle: '验码出行方式',
-      rightThreeTitle: '验码城市排行',
-      rightFourTitle: '验码卡口排行',
+      rightTwoTitle: '扫码方式占比',
+      rightThreeTitle: '武汉市各区域排行',
+      rightFourTitle: '武汉市各网点排行',
       centerOnecontent: '打卡情况',
       centerTwocontent: '打卡人群健康情况',
       applyData: [],
