@@ -222,20 +222,18 @@ export default {
     }
 
     .flex-cell{
+      width: 0;
       height: 100%;
       flex-grow: 1;
       flex-shrink:0;
       display: flex;
+      overflow: hidden;
       /*水平居中、垂直居中*/
       justify-content: center;
       align-items: center;
-    }
-
-    .city {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      width: 0;
     }
   }
 }
