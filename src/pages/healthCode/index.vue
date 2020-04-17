@@ -264,13 +264,13 @@ export default {
           "序号", "城市名称", "申请人数", "红码", "黄码", "绿码", "通过率"
         ],
         tableData: [
-          {index: 1, cityName: '荆门市', applyPeople: 500, red: 33333, yellow: 200, green: 60, passRate: 10},
-          {index: 2, cityName: '荆门市', applyPeople: 500, red: 33333, yellow: 200, green: 60, passRate: 10},
-          {index: 3, cityName: '荆门市', applyPeople: 500, red: 33333, yellow: 200, green: 60, passRate: 10},
-          {index: 4, cityName: '荆门市', applyPeople: 500, red: 33333, yellow: 200, green: 60, passRate: 10},
-          {index: 5, cityName: '荆门市', applyPeople: 500, red: 33333, yellow: 200, green: 60, passRate: 10},
-          {index: 6, cityName: '荆门市', applyPeople: 500, red: 33333, yellow: 200, green: 60, passRate: 10},
-          {index: 7, cityName: '荆门市', applyPeople: 500, red: 33333, yellow: 200, green: 60, passRate: 10},
+          {index: 1, city: '荆门市21321321312', applyPeople: 500, red: 33333, yellow: 200, green: 60, passRate: 10},
+          {index: 2, city: '荆门市', applyPeople: 500, red: 33333, yellow: 200, green: 60, passRate: 10},
+          {index: 3, city: '荆门市', applyPeople: 500, red: 33333, yellow: 200, green: 60, passRate: 10},
+          {index: 4, city: '荆门市', applyPeople: 500, red: 33333, yellow: 200, green: 60, passRate: 10},
+          {index: 5, city: '荆门市', applyPeople: 500, red: 33333, yellow: 200, green: 60, passRate: 10},
+          {index: 6, city: '荆门市', applyPeople: 500, red: 33333, yellow: 200, green: 60, passRate: 10},
+          {index: 7, city: '荆门市', applyPeople: 500, red: 33333, yellow: 200, green: 60, passRate: 10},
         ]
       },
       cityRankTable: {
