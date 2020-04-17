@@ -60,7 +60,7 @@
           <div class="flex-row" v-for="(item, index) in tableInfo.tableData" :key="index">
             <div class="flex-cell">{{index + 1}}</div>
             <div class="city flex-cell"  :title="item.city">{{item.city}}</div>
-            <div class="flex-cell">{{item.applyTotal}}</div>
+            <!-- <div class="flex-cell">{{item.applyTotal}}</div> -->
             <div class="flex-cell">{{item.redTotal}}</div>
             <div class="flex-cell">{{item.yellowTotal}}</div>
             <div class="flex-cell">{{item.greenTotal}}</div>

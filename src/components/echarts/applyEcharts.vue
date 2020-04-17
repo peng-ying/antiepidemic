@@ -1,5 +1,6 @@
 <template>
   <div :id="id" style="width: 100%;height: 100%;"></div>
+  <!-- 只保留发放情况 -->
 </template>
 
 <script>
@@ -66,7 +67,8 @@ export default {
         legend: {
           type: "scroll",
           right: '5%',
-          data:['申请人数','发放人数'],
+          // data:['申请人数','发放人数'],
+          data: ['发放人数'],
           itemWidth:18,
           itemHeight:12,
           textStyle: {
@@ -127,24 +129,24 @@ export default {
           },
         ],
         series: [
-          {
-            symbolSize: 6,
-            name: '申请人数',
-            type: "line",
-            yAxisIndex: 0,
-            data: this.apply,
-            symbol: 'circle',
-            itemStyle: {
-                normal: {
-                    // borderWidth: 10,
-                  color: '#45A3E3'
-                },
-            },
-            label:{
-                show: true,
-                color: '#1AACFA'
-            }
-          },
+          // {
+          //   symbolSize: 6,
+          //   name: '申请人数',
+          //   type: "line",
+          //   yAxisIndex: 0,
+          //   data: this.apply,
+          //   symbol: 'circle',
+          //   itemStyle: {
+          //       normal: {
+          //           // borderWidth: 10,
+          //         color: '#45A3E3'
+          //       },
+          //   },
+          //   label:{
+          //       show: true,
+          //       color: '#1AACFA'
+          //   }
+          // },
           {
             symbolSize: 6,
             name: '发放人数',
@@ -162,7 +164,8 @@ export default {
                 show: true,
                 color: '#77DD5D'
             }
-          }]
+          }
+        ]
       })
 
       setTimeout(function (){        

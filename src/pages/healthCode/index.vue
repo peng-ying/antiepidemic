@@ -20,13 +20,13 @@
                 <div class="flex-cell flex-left-3">
                   <SubTitle :subTitle="leftTwoTitle"/>
                   <div class="leftTwocontent">
-                    <div class="btns">
+                    <!-- <div class="btns">
                       <div
                         v-for="(item, index) in btn"
                         :key="index"
                         @click="peopleChooseType(index)"
                         :class="{active: currentIndex === index}">{{item}}</div>
-                    </div>
+                    </div> -->
                     <SexAndAgeEcharts :id="'people'" :echartsData="subPeopleData"/>
                   </div>
                 </div>
@@ -177,7 +177,7 @@ export default {
     return {
       nowTime: '',
       isFullscreen:false,
-      leftOneTitle: '湖北省健康码申请与发放情况',
+      leftOneTitle: '湖北省健康码发放情况',
       leftTwoTitle: '人群性别及年龄分布',
       leftThreeTitle: '健康码发布情况',
       rightOneTitle: '湖北省健康码验码情况',
@@ -258,10 +258,10 @@ export default {
           overflowY: 'scroll'
         },
         styleContent: {
-          maxHeight: '12.5vh',
+          maxHeight: '15vh',
         },
         head: [
-          "序号", "城市名称", "申请人数", "红码", "黄码", "绿码", "通过率"
+          "序号", "城市名称", "红码", "黄码", "绿码", "通过率"
         ],
         tableData: [
           {index: 1, city: '荆门市21321321312', applyPeople: 500, red: 33333, yellow: 200, green: 60, passRate: 10},
@@ -407,8 +407,8 @@ export default {
 
         this.applyData = result.leftOne
         this.peopleData = result.leftTwo
-        // 默认显示申请人数
-        this.subPeopleData = result.leftTwo.applyList
+        // 默认显示发放人数
+        this.subPeopleData = result.leftTwo.grantList
         this.codeData = result.leftThree.leftThree1
         this.codeTable.tableData = result.leftThree.leftThree2
         this.totalData = result.centerFour
