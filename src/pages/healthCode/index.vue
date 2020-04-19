@@ -176,7 +176,7 @@ export default {
   data() {
     return {
       nowTime: '',
-      isFullscreen:false,
+      isFullscreen:true,
       leftOneTitle: '湖北省健康码发放情况',
       leftTwoTitle: '人群性别及年龄分布',
       leftThreeTitle: '健康码发布情况',
@@ -341,6 +341,7 @@ export default {
    window.onresize = function() {
         if (!_that.checkFull()) {
             //要执行的动作
+            // debugger
            _that.isFullscreen=true;
         }
     }
@@ -381,11 +382,13 @@ export default {
           this.isFullscreen=true;
           el.msRequestFullscreen()
         }
+        this.isFullscreen = true
       }
     },
     toggleFullScreen(e){
-        // this.isFullscreen=!this.isFullscreen;
-        this.isFullScreen = true
+      // debugger
+        this.isFullscreen=!this.isFullscreen;
+        // this.isFullScreen = true
         this.FullScreen(document.getElementById("canvasPaintArea"));
     },
     async initData() {
