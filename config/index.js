@@ -13,7 +13,7 @@ module.exports = {
     proxyTable: {
       '/api': {
         // 测试环境
-        target: 'http://192.168.0.106:3001/ncov/',  // 接口域名
+        target: 'http://192.168.0.105:3001/ncov/',  // 接口域名
         changeOrigin: true,  //是否跨域
         pathRewrite: {
             '^/api': ''   //需要rewrite重写的,

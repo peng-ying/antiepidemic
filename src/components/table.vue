@@ -51,7 +51,7 @@
             <div class="flex-cell">{{item.bayonetTotal}}</div>
             <div class="flex-cell">{{item.bayonetPerson}}</div>
             <div class="flex-cell">{{item.bayonetCar}}</div>
-            <div class="flex-cell">{{item.bayonetPassRatio}}%</div>
+            <!-- <div class="flex-cell">{{item.bayonetPassRatio}}%</div> -->
           </div>
         </vue-seamless-scroll>
       </div>
@@ -74,12 +74,12 @@
             <div class="flex-cell">{{index + 1}}</div>
             <div class="flex-cell">{{item.bayonetName}}</div>
             <div class="flex-cell">{{item.checkTotal}}</div>
-            <div class="city flex-cell"  :title="item.city">{{item.city}}</div>
+            <!-- <div class="city flex-cell"  :title="item.city">{{item.city}}</div> -->
             <!-- <div class="flex-cell flex-row">{{item.applyTotal}}</div> -->
             <!-- <div class="flex-cell flex-row">{{item.redTotal}}</div> -->
-            <div class="flex-cell">{{item.bayonetPerson}}</div>
-            <div class="flex-cell">{{item.bayonetCar}}</div>
-            <div class="flex-cell">{{item.bayonetPassRatio}}%</div>
+            <!-- <div class="flex-cell">{{item.bayonetPerson}}</div> -->
+            <!-- <div class="flex-cell">{{item.bayonetCar}}</div> -->
+            <!-- <div class="flex-cell">{{item.bayonetPassRatio}}%</div> -->
           </div>
         </vue-seamless-scroll>
       </div>

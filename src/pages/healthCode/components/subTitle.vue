@@ -1,7 +1,7 @@
 <template>
   <div class="subTitle">
     <div class="text">{{subTitle}}</div>
-    <div class="info" v-show="showInfo" @click="showDetail">详情</div>
+    <!-- <div class="info" v-show="showInfo" @click="showDetail">详情</div> -->
     <div class="subtitlebg"></div>
   </div>
 </template>

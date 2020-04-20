@@ -129,7 +129,7 @@ export default {
                             
                         },
                         {// 灰色部分
-                            value: item.value / item.ratio - item.value,
+                            value: 100 - item.ratio,
                             itemStyle: {
                                 normal: {
                                     color: "#0C2B4A"
@@ -148,7 +148,7 @@ export default {
                             }
                         },
                         {
-                            value: item.value,
+                            value: item.ratio,
                             name: '税种五',
                             itemStyle: {
                                 normal: {

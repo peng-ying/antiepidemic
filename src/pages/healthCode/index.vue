@@ -209,7 +209,7 @@ export default {
           },
           pager: true,
           head: [
-            "序号", "城市排名", "验码次数", "卡口数量", "通过人次", "通过车次", "通过率"
+            "序号", "城市排名", "验码次数", "卡口数量", "通过人次", "通过车次"
           ],
           tableData: [
             {index: 1, rank: 12, checkTimes: 500, entrances: 1000, passPerson: 200, passCars: 60, passRate: 10},
@@ -236,7 +236,7 @@ export default {
           },
           pager: true,
           head: [
-            "序号", "卡口名称", "验码次数", "城市名称", "通过人次", "通过车次", "通过率"
+            "序号", "卡口名称", "验码次数"
           ],
           tableData: [
             {index: 1, name: '卡口一', checkTimes: 500, cityName: '荆门市', passPerson: 200, passCars: 60, passRate: 10},
@@ -261,7 +261,7 @@ export default {
           maxHeight: '15vh',
         },
         head: [
-          "序号", "城市名称", "红码", "黄码", "绿码", "通过率"
+          "序号", "城市名称", "红码", "黄码", "绿码", "发放率"
         ],
         tableData: [
           {index: 1, city: '荆门市21321321312', redTotal: 500, red: 33333, yellowTotal: 200, greenTotal: 60, passRate: 10},
@@ -284,7 +284,7 @@ export default {
           maxHeight: '12.5vh',
         },
         head: [
-          "序号", "城市名称", "验码次数", "卡口数量", "通过人次", "通过车次", "通过率"
+          "序号", "市区名称", "验码次数", "卡口数量", "通过人次", "通过车次"
         ],
         tableData: [
           {index: 1, rank: 12, checkTimes: 500, entrances: 1000, passPerson: 200, passCars: 60, passRate: 10},
@@ -306,7 +306,7 @@ export default {
           maxHeight: '12.5vh',
         },
         head: [
-          "序号", "卡口名称", "验码次数", "城市名称", "通过人次", "通过车次", "通过率"
+          "序号", "卡口名称", "验码次数"
         ],
         tableData: [
           {index: 1, name: '卡口一', checkTimes: 500, cityName: '荆门市', passPerson: 200, passCars: 60, passRate: 10},
