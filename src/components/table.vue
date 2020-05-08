@@ -38,22 +38,23 @@
         </tr>
       </tbody>
     </table> -->
+    <!-- {{tableInfo}} -->
     <div class="table">
       <div class="tablehead flex-row">
         <div class="flex-cell" v-for="(item, index) in tableInfo.head" :key="index">{{item}}</div>
       </div>
       <div class="tablecontent"  :style="tableInfo.styleContent" v-if="tableInfo.type === 'city'">
-        <vue-seamless-scroll :data="tableInfo.tableData" :class-option="classOption">
+        <!-- <vue-seamless-scroll :data="tableInfo.tableData" :class-option="classOption"> -->
           <div class="flex-row" v-for="(item, index) in tableInfo.tableData" :key="index">
             <div class="flex-cell">{{index + 1}}</div>
             <div class="city flex-cell"  :title="item.city">{{item.city}}</div>
             <div class="flex-cell">{{item.checkTotal}}</div>
             <div class="flex-cell">{{item.bayonetTotal}}</div>
-            <div class="flex-cell">{{item.bayonetPerson}}</div>
-            <div class="flex-cell">{{item.bayonetCar}}</div>
+            <!-- <div class="flex-cell">{{item.bayonetPerson}}</div> -->
+            <!-- <div class="flex-cell">{{item.bayonetCar}}</div> -->
             <!-- <div class="flex-cell">{{item.bayonetPassRatio}}%</div> -->
           </div>
-        </vue-seamless-scroll>
+        <!-- </vue-seamless-scroll> -->
       </div>
       <div class="tablecontent" :style="tableInfo.styleContent" v-else-if="tableInfo.type === 'code'">
         <vue-seamless-scroll :data="tableInfo.tableData" :class-option="classOption">
@@ -191,7 +192,9 @@ export default {
   }
 }
 .table-box {
+  // height: 100%;
   .table {
+    height: 100%;  
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -213,6 +216,7 @@ export default {
       display: flex;
       /*垂直方向布局*/
       // flex-direction: column;
+      justify-content: flex-start;
     }
     .flex-column{
       display: flex;
@@ -225,11 +229,25 @@ export default {
       width: 0;
       height: 100%;
       flex-grow: 1;
-      flex-shrink:0;
+      flex-shrink:1;
       display: flex;
       overflow: hidden;
       /*水平居中、垂直居中*/
       justify-content: center;
+      align-items: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .flex-cell2 {
+      width: 0;
+      height: 100%;
+      flex-grow: 2;
+      flex-shrink:0;
+      display: flex;
+      overflow: hidden;
+      /*水平居中、垂直居中*/
+      justify-content: flex-start;
       align-items: center;
       white-space: nowrap;
       overflow: hidden;

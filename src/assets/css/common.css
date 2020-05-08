@@ -1,0 +1,29 @@
+@font-face {
+  font-family: SourceHanSansCN-Bold;
+  src: url('../fonts/SourceHanSansCN-Bold.otf');
+}
+@font-face {
+  font-family: SourceHanSansCN-Medium;
+  src: url('../fonts/SourceHanSansCN-Medium.otf');
+}
+@font-face {
+  font-family: SourceHanSansCN-Normal;
+  src: url('../fonts/SourceHanSansCN-Normal.otf');
+}
+@font-face {
+  font-family: SourceHanSansCN-Regular;
+  src: url('../fonts/SourceHanSansCN-Regular.otf');
+}
+.effects {
+  text-shadow: 0px 0px 10px #0245a7, 0px 0px 20px #0245a7, 0px 0px 30px #0245a7, 0px 0px 40px #0245a7, 0px 0px 50px #0245a7;
+}
+.effects-small {
+  text-shadow: 0px 0px 5px #0245a7, 0px 0px 10px #0245a7, 0px 0px 15px #0245a7, 0px 0px 20px #0245a7, 0px 0px 25px #0245a7;
+}
+.effects-white {
+  text-shadow: 0px 0px 5px #0245a7, 0px 0px 8px #0245a7;
+}
+.head {
+  background-color: #008AFF!important;
+  background: linear-gradient(92deg, rgba(0, 138, 255, 0.5) 0%, rgba(0, 138, 255, 0) 100%);
+}

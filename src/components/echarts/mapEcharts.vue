@@ -95,6 +95,10 @@ export default {
             itemWidth: 25,
             itemHeight: 15,
             showLabel: true,
+            label: {
+              show: true,
+              position: 'inside'
+            },
             seriesIndex: [0],
             textStyle: {
               color: "#80C5FF"

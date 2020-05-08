@@ -38,7 +38,8 @@ export default {
         let age = item.ageRange, name = item.ageName
         let str = `${name}(${age})`
         this.myData.push(str)
-        item.applyNum ? this.maleValue.push(item.applyNum) : this.maleValue.push(item.grantNum)
+        // item.applyNum ? this.maleValue.push(item.applyNum) : this.maleValue.push(item.grantNum)
+        this.maleValue.push(item.grantNum)
       })
       femaleArray.map(item => {
         item.applyNum ? this.femaleValue.push(item.applyNum) : this.femaleValue.push(item.grantNum)

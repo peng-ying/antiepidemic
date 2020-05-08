@@ -60,7 +60,40 @@
                         </tbody>
                       </table>
                     </div> -->
-                    <testTable class="leftThree-table" :tableInfo="codeTable"/>
+                    <!-- <testTable class="leftThree-table" :tableInfo="codeTable"/> -->
+                    <div class="leftThree-table">
+                      <el-table
+                        :data="codeTable.tableData"
+                        height='100%'
+                        border
+                        :header-row-class-name="tableHead"
+                        class="elTable"
+                        style="width: 100%;">
+                        <el-table-column prop="index" label="序号"></el-table-column>
+                        <el-table-column
+                          prop="city"
+                          label="城市名称"
+                          >
+                        </el-table-column>
+                        <el-table-column
+                          prop="redTotal"
+                          label="红码"
+                          >
+                        </el-table-column>
+                        <el-table-column
+                          prop="yellowTotal"
+                          label="黄码">
+                        </el-table-column>
+                        <el-table-column
+                          prop="greenTotal"
+                          label="绿码">
+                        </el-table-column>
+                        <el-table-column
+                          prop="grantRatio"
+                          label="发放率">
+                        </el-table-column>
+                      </el-table>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -160,6 +193,7 @@
 </template>
 
 <script>
+import '../../assets/css/common.css'
 import Header from './components/header';
 import SubTitle from './components/subTitle';
 import ApplyEcharts from '@/components/echarts/applyEcharts';
@@ -258,7 +292,7 @@ export default {
           overflowY: 'scroll'
         },
         styleContent: {
-          maxHeight: '15vh',
+          maxHeight: '16.5vh',
         },
         head: [
           "序号", "城市名称", "红码", "黄码", "绿码", "发放率"
@@ -284,15 +318,15 @@ export default {
           maxHeight: '12.5vh',
         },
         head: [
-          "序号", "市区名称", "验码次数", "卡口数量", "通过人次", "通过车次"
+          "序号", "市区名称", "验码次数", "卡口数量",
         ],
         tableData: [
-          {index: 1, rank: 12, checkTimes: 500, entrances: 1000, passPerson: 200, passCars: 60, passRate: 10},
-          {index: 2, rank: 12, checkTimes: 500, entrances: 1000, passPerson: 200, passCars: 60, passRate: 10},
-          {index: 3, rank: 12, checkTimes: 500, entrances: 1000, passPerson: 200, passCars: 60, passRate: 10},
-          {index: 4, rank: 12, checkTimes: 500, entrances: 1000, passPerson: 200, passCars: 60, passRate: 10},
-          {index: 5, rank: 12, checkTimes: 500, entrances: 1000, passPerson: 200, passCars: 60, passRate: 10},
-          {index: 6, rank: 12, checkTimes: 500, entrances: 1000, passPerson: 200, passCars: 60, passRate: 10},
+          {index: 1, city: 'shanghahngindsudhwn', checkTotal: 500, bayonetTotal: 1000},
+          {index: 2, city: 'shanghahngindsudhwn', checkTotal: 500, bayonetTotal: 1000},
+          {index: 3, city: 'shanghahngindsudhwn', checkTotal: 500, bayonetTotal: 1000},
+          {index: 4, city: 'shanghahngindsudhwn', checkTotal: 500, bayonetTotal: 1000},
+          {index: 5, city: 'shanghahngindsudhwn', checkTotal: 500, bayonetTotal: 1000},
+          {index: 6, city: 'shanghahngindsudhwn', checkTotal: 500, bayonetTotal: 1000},
         ],
       },
       entranceRankTable: {
@@ -309,12 +343,12 @@ export default {
           "序号", "卡口名称", "验码次数"
         ],
         tableData: [
-          {index: 1, name: '卡口一', checkTimes: 500, cityName: '荆门市', passPerson: 200, passCars: 60, passRate: 10},
-          {index: 2, name: '卡口一', checkTimes: 500, cityName: '荆门市', passPerson: 200, passCars: 60, passRate: 10},
-          {index: 3, name: '卡口一', checkTimes: 500, cityName: '荆门市', passPerson: 200, passCars: 60, passRate: 10},
-          {index: 4, name: '卡口一', checkTimes: 500, cityName: '荆门市', passPerson: 200, passCars: 60, passRate: 10},
-          {index: 5, name: '卡口一', checkTimes: 500, cityName: '荆门市', passPerson: 200, passCars: 60, passRate: 10},
-          {index: 6, name: '卡口一', checkTimes: 500, cityName: '荆门市', passPerson: 200, passCars: 60, passRate: 10},
+          {index: 1, bayonetName: '卡口一11554', checkTotal: 500, },
+          {index: 2, bayonetName: '卡口一78891111', checkTotal: 500, },
+          {index: 3, bayonetName: '卡口一1148222', checkTotal: 500, },
+          {index: 4, bayonetName: '卡口一', checkTotal: 500,},
+          {index: 5, bayonetName: '卡口一888599', checkTotal: 500, },
+          {index: 6, bayonetName: '卡口一', checkTotal: 500, },
         ]
       }
     }
@@ -347,6 +381,9 @@ export default {
     }
   },
   methods: {
+    tableHead() {
+      return 'head'
+    },
     checkFull() {
       var isFull = document.fullscreenEnabled || window.fullScreen || document.webkitIsFullScreen || document.msFullscreenEnabled;
       if (isFull === undefined) {isFull = false;}
@@ -393,8 +430,8 @@ export default {
     },
     async initData() {
       this.codeTable.tableData = this.codeTable.tableData;
-      this.cityRankTable.tableData = []
-      this.entranceRankTable.tableData = []
+      this.cityRankTable.tableData = [this.cityRankTable.tableData]
+      this.entranceRankTable.tableData = [this.entranceRankTable.tableData]
       let params = {
         pageNo: 1,
         pageSize: 10
@@ -413,13 +450,13 @@ export default {
         // 默认显示发放人数
         this.subPeopleData = result.leftTwo.grantList
         this.codeData = result.leftThree.leftThree1
-        this.codeTable.tableData = result.leftThree.leftThree2
+        // this.codeTable.tableData = result.leftThree.leftThree2
         this.totalData = result.centerFour
         this.mapData = result.centerFive
         this.checkCodeData = result.rightSix.rightSix1
         this.tripModeData = result.rightSeven
-        this.cityRankTable.tableData = result.rightEight
-        this.entranceRankTable.tableData = result.rightNine
+        // this.cityRankTable.tableData = result.rightEight
+        // this.entranceRankTable.tableData = result.rightNine
       }
     },
     peopleChooseType(index) {
@@ -584,6 +621,7 @@ export default {
           }
           .leftThree-table {
             height: 65%;
+            
           }
         }
         .rightOnecontent {
@@ -741,14 +779,14 @@ export default {
   //     thead th:first-child, tbody td:first-child {
   //       width: 45px;
   //     }
-  //     .table-head {
-  //       background:linear-gradient(92deg,rgba(0,138,255,0.5) 0%,rgba(0,138,255,0) 100%);
-  //       th {
-  //         height: 34px;
-  //         color: #FFFFFF;
-  //         opacity:0.7;
-  //       }
-  //     }
+      // .table-head {
+      //   background:linear-gradient(92deg,rgba(0,138,255,0.5) 0%,rgba(0,138,255,0) 100%);
+      //   // th {
+      //   //   height: 34px;
+      //   //   color: #FFFFFF;
+      //   //   opacity:0.7;
+      //   // }
+      // }
   //     .table-body {
   //       width: 100%;
   //       height: 110px;
@@ -773,4 +811,13 @@ export default {
   // }
 
 }
+</style>
+<style lang="less">
+  .elTable {
+    background-color: #033967!important;
+    .el-table th, .el-table tr {
+        background-color:none;
+        background-color: #033967!important;
+    }
+  }
 </style>
